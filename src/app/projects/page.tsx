@@ -166,9 +166,7 @@ export default function ProjectsPage() {
                     </Button>
                   )}
                   <Button size="sm" variant="secondary" asChild>
-                    <Link href={`/projects/${project.id}`}>
-                      View Details
-                    </Link>
+                    <Link href={`/projects/${project.id}`}>View Details</Link>
                   </Button>
                 </div>
               </div>
@@ -248,15 +246,13 @@ export default function ProjectsPage() {
                   </Button>
                 )}
                 <Button size="sm" variant="secondary" asChild>
-                  <Link href={`/projects/${project.id}`}>
-                    Details
-                  </Link>
+                  <Link href={`/projects/${project.id}`}>Details</Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }
