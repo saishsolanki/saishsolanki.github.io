@@ -1,7 +1,0 @@
-# /.well-known/security.txt
-# See the 'secure' command for more details.
-
-Contact: mailto:your-email@example.com
-Policy: https://saishsolanki.github.io/#secure
-Acknowledgments: https://saishsolanki.github.io/#thanks
-Hiring: https://saishsolanki.github.io/#hireme
