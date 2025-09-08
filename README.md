@@ -1,19 +1,24 @@
-# Offensive Security Portfolio
+# Offensive Security Portfolio v2.0 - "Hacker Terminal"
 
-This is a starter template for your personal portfolio website, hosted on GitHub Pages.
+This is a "hacker terminal" themed portfolio designed to be interactive and showcase offensive security skills.
 
-## How to Get Started
+## How to Use
 
-1.  **Push these files:** Commit and push the `index.html` and `style.css` files to your `saishsolanki/saishsolanki.github.io` repository.
-2.  **Enable GitHub Pages:**
-    *   Go to your repository's **Settings** tab.
-    *   Navigate to the **Pages** section in the left sidebar.
-    *   Under **Branch**, select `main` (or `master`) and click **Save**.
-3.  **View your site:** Your portfolio will be live at `https://saishsolanki.github.io` in a few minutes.
-4.  **Customize:** Edit the `index.html` file to add your personal information, skills, and project details.
+Your website now functions like a command-line interface. Here are the available commands:
 
-## Next Steps
+*   `help` - Shows a list of available commands.
+*   `about` - Displays your bio.
+*   `skills` - Lists your technical skills.
+*   `projects` - Shows your project portfolio.
+*   `contact` - Provides your contact information.
+*   `hireme` - Outlines services you offer for freelance work.
+*   `secure` - Displays the responsible disclosure policy.
+*   `clear` - Clears the terminal screen.
 
-*   **Add Project Details:** Create separate pages for detailed project write-ups or link to your GitHub repositories.
-*   **Start a Blog:** Consider using a static site generator like [Jekyll](https://jekyllrb.com/) or [Hugo](https://gohugo.io/) to easily add a blog for CTF write-ups, vulnerability research, or tool analyses.
-*   **Add a Custom Domain:** You can configure a custom domain name for your site in the GitHub Pages settings.
+There is also a hidden CTF (Capture The Flag) challenge for visitors to find!
+
+## Customizing Your Portfolio
+
+*   **Content:** All content (about, skills, projects, etc.) is located in the `script.js` file within the `commands` object. Edit the text there to update your information.
+*   **CTF Challenge:** The flag is hidden in a comment in the `index.html` file. You can change its value in both `index.html` and `script.js` (in the `checkFlag` function).
+*   **Contact Info:** Update your email and social links in the `script.js` file under the `contact` command.
