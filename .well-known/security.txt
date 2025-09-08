@@ -1,0 +1,7 @@
+# /.well-known/security.txt
+# Security contact information for responsible disclosure
+
+Contact: mailto:saish.solanki@protonmail.com
+Policy: Use the 'secure' command on the main page for detailed policy
+Acknowledgments: Recognition will be provided for valid security reports
+Hiring: Use the 'hireme' command on the main page for security consulting services

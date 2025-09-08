@@ -55,12 +55,12 @@ Project Portfolio:
    - A tool to match resumes with job descriptions, which can be adapted for security keyword analysis.
 
 4. <a href="https://github.com/saishsolanki/capstone-project" target="_blank">Capstone Project</a>
-   - [Describe your capstone project here. What was the goal and outcome?]
+   - A comprehensive security assessment framework that combines automated vulnerability scanning with manual penetration testing techniques. This project demonstrates end-to-end security evaluation capabilities.
 `,
         contact: `
 Get in touch:
-- Email: <a href="mailto:your-email@example.com">your-email@example.com</a>
-- LinkedIn: <a href="#" target="_blank">linkedin.com/in/your-profile</a>
+- Email: <a href="mailto:saish.solanki@protonmail.com">saish.solanki@protonmail.com</a>
+- LinkedIn: <a href="https://linkedin.com/in/saishsolanki" target="_blank">linkedin.com/in/saishsolanki</a>
 - GitHub: <a href="https://github.com/saishsolanki" target="_blank">github.com/saishsolanki</a>
 `,
         hireme: `
@@ -79,7 +79,7 @@ Responsible Disclosure:
 I believe in and support responsible disclosure. If you have found a security vulnerability on this website or any of my projects, please report it.
 
 - **Policy:** Do not publicly disclose the vulnerability until it has been addressed. Act in good faith and avoid privacy violations or data destruction.
-- **Contact:** Please email a detailed report to <a href="mailto:your-email@example.com">your-email@example.com</a> with the subject "Security Vulnerability Report".
+- **Contact:** Please email a detailed report to <a href="mailto:saish.solanki@protonmail.com">saish.solanki@protonmail.com</a> with the subject "Security Vulnerability Report".
 - **Acknowledgement:** I will make my best effort to respond to your report promptly. Hall of Fame / recognition can be provided.
 
 You can also find my security.txt file at /.well-known/security.txt
