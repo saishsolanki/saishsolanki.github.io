@@ -1,57 +1,20 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import type { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Mail, MapPin, Phone } from 'lucide-react'
 
-type ContactForm = {
-  name: string
-  email: string
-  subject: string
-  message: string
+export const metadata: Metadata = {
+  title: 'Contact - Get In Touch for Cybersecurity Solutions',
+  description: 'Contact Saish Solanki for cybersecurity consulting, security assessments, or to discuss your organization\'s digital security needs.',
+  openGraph: {
+    title: 'Contact Saish Solanki - Cybersecurity Professional',
+    description: 'Get in touch for cybersecurity consulting, security assessments, and digital infrastructure protection services.',
+  },
 }
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState('')
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors }
-  } = useForm<ContactForm>()
-
-  const onSubmit = async (data: ContactForm) => {
-    setIsSubmitting(true)
-    
-    try {
-      // Here you would typically send the data to your backend or form service
-      // For now, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      setSubmitMessage('Thank you for your message! I\'ll get back to you soon.')
-      reset()
-    } catch (error) {
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
     <div className="container py-24 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto"
-      >
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl mb-6">
@@ -65,11 +28,7 @@ export default function ContactPage() {
 
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div>
             <h2 className="text-2xl font-bold mb-6">Let&apos;s Connect</h2>
             <p className="text-muted-foreground mb-8">
               I&apos;m always interested in discussing new opportunities, cybersecurity challenges, 
@@ -115,113 +74,29 @@ export default function ContactPage() {
                 For urgent security matters, please indicate the priority in your subject line.
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name *</Label>
-                  <Input
-                    id="name"
-                    {...register('name', { required: 'Name is required' })}
-                    placeholder="Your name"
-                  />
-                  {errors.name && (
-                    <p className="text-sm text-destructive">{errors.name.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    {...register('email', {
-                      required: 'Email is required',
-                      pattern: {
-                        value: /^\S+@\S+$/i,
-                        message: 'Invalid email address'
-                      }
-                    })}
-                    placeholder="your.email@example.com"
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-destructive">{errors.email.message}</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject *</Label>
-                <Input
-                  id="subject"
-                  {...register('subject', { required: 'Subject is required' })}
-                  placeholder="What would you like to discuss?"
-                />
-                {errors.subject && (
-                  <p className="text-sm text-destructive">{errors.subject.message}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Message *</Label>
-                <Textarea
-                  id="message"
-                  rows={6}
-                  {...register('message', { required: 'Message is required' })}
-                  placeholder="Tell me about your project, security needs, or any questions you have..."
-                />
-                {errors.message && (
-                  <p className="text-sm text-destructive">{errors.message.message}</p>
-                )}
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                disabled={isSubmitting}
-                className="w-full"
-              >
-                {isSubmitting ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="ml-2 w-4 h-4" />
-                  </>
-                )}
+          {/* Contact Form Placeholder */}
+          <div className="border rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-4">Send a Message</h3>
+            <p className="text-muted-foreground mb-6">
+              Contact form will be available soon. For now, please reach out via email or LinkedIn.
+            </p>
+            <div className="space-y-4">
+              <Button className="w-full" asChild>
+                <a href="mailto:contact@saishsolanki.dev">Send Email</a>
               </Button>
-
-              {submitMessage && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`p-4 rounded-lg text-sm ${
-                    submitMessage.includes('error')
-                      ? 'bg-destructive/10 text-destructive'
-                      : 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
-                  }`}
-                >
-                  {submitMessage}
-                </motion.div>
-              )}
-            </form>
-          </motion.div>
+              <Button variant="outline" className="w-full" asChild>
+                <a href="https://linkedin.com/in/saishsolanki" target="_blank" rel="noopener noreferrer">
+                  Connect on LinkedIn
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
 
         {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-20 text-center"
-        >
+        <div className="mt-20 text-center">
           <h2 className="text-2xl font-bold mb-4">Other Ways to Connect</h2>
           <p className="text-muted-foreground mb-6">
             Prefer a different communication method? You can also find me on these platforms:
@@ -238,8 +113,8 @@ export default function ContactPage() {
               </a>
             </Button>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

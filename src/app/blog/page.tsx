@@ -1,10 +1,17 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Calendar, Clock, ArrowRight } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Blog - Cybersecurity Insights & Tutorials',
+  description: 'Read Saish Solanki\'s thoughts, tutorials, and insights on cybersecurity, threat analysis, and best practices for protecting digital infrastructure.',
+  openGraph: {
+    title: 'Cybersecurity Blog by Saish Solanki',
+    description: 'Expert insights on cybersecurity, network security, and threat analysis from a professional security coordinator.',
+  },
+}
 
 // Mock blog posts - in a real app these would come from Contentlayer
 const blogPosts = [
@@ -58,12 +65,7 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <div className="container py-24 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
+      <div className="text-center mb-16">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl mb-6">
           Security Insights
         </h1>
@@ -71,16 +73,11 @@ export default function BlogPage() {
           Thoughts, tutorials, and insights on cybersecurity, threat analysis, and best practices 
           for protecting digital infrastructure.
         </p>
-      </motion.div>
+      </div>
 
       {/* Featured Post */}
       {blogPosts.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <div className="border rounded-lg overflow-hidden">
             <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
               <div className="text-8xl opacity-20">📚</div>
@@ -120,23 +117,16 @@ export default function BlogPage() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Blog Posts Grid */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
+      <div>
         <h2 className="text-3xl font-bold mb-8">Latest Articles</h2>
         <div className="grid gap-8 md:grid-cols-2">
           {blogPosts.slice(1).map((post, index) => (
-            <motion.article
+            <article
               key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
               className="border rounded-lg p-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
@@ -178,18 +168,13 @@ export default function BlogPage() {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
-            </motion.article>
+            </article>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Newsletter Signup */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="mt-20 text-center p-8 border rounded-lg bg-muted/30"
-      >
+      <div className="mt-20 text-center p-8 border rounded-lg bg-muted/30">
         <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
         <p className="text-muted-foreground mb-6 max-w-md mx-auto">
           Get notified when I publish new cybersecurity insights and tutorials.
@@ -199,7 +184,7 @@ export default function BlogPage() {
             Subscribe to Updates
           </Link>
         </Button>
-      </motion.div>
+      </div>
     </div>
   )
 }

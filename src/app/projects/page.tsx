@@ -1,11 +1,17 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Github, ExternalLink, Calendar } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Projects - Cybersecurity Portfolio & Case Studies',
+  description: 'Explore Saish Solanki\'s cybersecurity projects including educational games, security implementations, traffic analysis tools, and automation solutions.',
+  openGraph: {
+    title: 'Cybersecurity Projects by Saish Solanki',
+    description: 'Portfolio of cybersecurity projects, tools, and implementations showcasing expertise in various security domains.',
+  },
+}
 
 const projects = [
   {
@@ -85,7 +91,7 @@ const projects = [
 const categories = ['All', 'Education', 'Infrastructure', 'Security Tools', 'Forensics', 'Automation']
 
 export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All')
+  const selectedCategory = 'All'
   
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
@@ -95,35 +101,22 @@ export default function ProjectsPage() {
 
   return (
     <div className="container py-24 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
+      <div className="text-center mb-16">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl mb-6">
           My Projects
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           A collection of cybersecurity projects, tools, and implementations showcasing my expertise in various security domains.
         </p>
-      </motion.div>
+      </div>
 
       {/* Featured Projects */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mb-20"
-      >
+      <div className="mb-20">
         <h2 className="text-3xl font-bold mb-8 text-center">Featured Projects</h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
               className="group relative border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
             >
               <div className="aspect-video bg-muted relative overflow-hidden">
@@ -179,46 +172,34 @@ export default function ProjectsPage() {
                   </Button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Category Filter */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="mb-12"
-      >
+      <div className="mb-12">
         <div className="flex flex-wrap gap-2 justify-center">
           {categories.map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => {}}
             >
               {category}
             </Button>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* All Projects */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
+      <div>
         <h2 className="text-3xl font-bold mb-8 text-center">All Projects</h2>
         <div className="grid gap-6 md:grid-cols-2">
           {filteredProjects.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
               className="border rounded-lg p-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-start justify-between mb-4">
