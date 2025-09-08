@@ -1,0 +1,107 @@
+:root {
+    --background: #000;
+    --text: #0F0;
+    --prompt: #0FF;
+    --border: #0F0;
+    --link: #0FF;
+    --link-hover: #FFF;
+}
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    margin: 0;
+    padding: 10px;
+}
+
+#terminal {
+    border: 2px solid var(--border);
+    padding: 10px;
+    height: calc(100vh - 44px);
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 10px var(--border);
+    animation: flicker 0.15s infinite;
+}
+
+/* CRT Scanlines Effect */
+#terminal::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+}
+
+#output {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.prompt-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: var(--prompt);
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+#input {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: inherit;
+    flex-grow: 1;
+    outline: none;
+    caret-color: var(--text);
+}
+
+.command-output {
+    margin-bottom: 10px;
+}
+
+.command-output .prompt {
+    color: var(--prompt);
+}
+
+a {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+}
+
+.error {
+    color: #F00;
+}
+
+.success {
+    color: #0F0;
+}
