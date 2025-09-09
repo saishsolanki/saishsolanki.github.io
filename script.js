@@ -22,12 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.addEventListener('click', toggleTheme);
 
     const welcomeMessage = `
-███████╗ █████╗ ██╗███████╗██╗  ██╗    ███████╗ ██████╗  ██████╗ ██╗  ██╗
-██╔════╝██╔══██╗██║██╔════╝██║  ██║    ██╔════╝██╔═══██╗██╔═══██╗╚██╗██╔╝
-███████╗███████║██║███████╗███████║    ███████╗██║   ██║██║   ██║ ╚███╔╝ 
-╚════██║██╔══██║██║╚════██║██╔══██║    ╚════██║██║   ██║██║   ██║ ██╔██╗ 
-███████║██║  ██║██║███████║██║  ██║    ███████║╚██████╔╝╚██████╔╝██╔╝ ██╗
-╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝
+
+░██████╗░█████╗░██╗░██████╗██╗░░██╗  ░░██╗██╗░█████╗░░░██╗██╗
+██╔════╝██╔══██╗██║██╔════╝██║░░██║  ░██╔╝██║██╔══██╗░██╔╝██║
+╚█████╗░███████║██║╚█████╗░███████║  ██╔╝░██║██║░░██║██╔╝░██║
+░╚═══██╗██╔══██║██║░╚═══██╗██╔══██║  ███████║██║░░██║███████║
+██████╔╝██║░░██║██║██████╔╝██║░░██║  ╚════██║╚█████╔╝╚════██║
+╚═════╝░╚═╝░░╚═╝╚═╝╚═════╝░╚═╝░░╚═╝  ░░░░░╚═╝░╚════╝░░░░░░╚═╝
                                                                         
 Welcome to my interactive shell. Type 'help' to see available commands.
 `;
@@ -92,14 +93,13 @@ Hello! I'm Saish, a cybersecurity enthusiast with a passion for offensive securi
 <div class="skill-bar"><div class="skill-fill" style="width: 75%">Advanced</div></div>
 
 <span class="command-category">🛠️ TOOLS & FRAMEWORKS</span>
-- Burp Suite Professional, Metasploit, Nmap, Wireshark
-- OWASP Testing Framework, BloodHound, Cobalt Strike
-- Docker, Kubernetes, Terraform, Ansible
-- Git, Jenkins, PowerShell, Windows/Linux environments
+- Burp Suite Professional, Metasploit, Nmap, Wireshark, Metasploit, Nikto, SQLmap
+- OWASP Testing Framework, BloodHound, Sliver C2, Impacket
+- Git, Jenkins, PowerShell, Windows/Linux environments, 
 
 <span class="command-category">📜 CERTIFICATIONS</span>
-- <span class="success">OSCP</span> - Offensive Security Certified Professional
-- <span class="status-warning">In Progress:</span> Advanced certifications
+- <span class="success">OSCP+</span> - Offensive Security Certified Professional
+- <span class="status-warning">In Progress: OSEP</span> Offensive Security Experienced Professional
 
 Type '<span class="success">certifications</span>' for detailed certification timeline.
 `,
@@ -124,14 +124,6 @@ Type '<span class="success">certifications</span>' for detailed certification ti
       • Automated testing across multiple endpoints
    🎯 <span class="success">Challenge:</span> Bypass without credential knowledge
    ✅ <span class="success">Solution:</span> Parameter tampering & session fixation
-
-<span class="success">3. Security-Enhanced Resume Matcher</span>
-   🔗 <a href="https://github.com/saishsolanki/Resume-Matcher" target="_blank">GitHub Repository</a>
-   📝 <span class="success">Technical Details:</span>
-      • NLP-based keyword extraction and matching
-      • Adapted for security role requirements analysis
-      • Machine learning classification for skill assessment
-   🔍 <span class="success">Security Adaptation:</span> Cybersecurity keyword analysis
 
 <span class="success">4. Comprehensive Security Assessment Framework</span>
    🔗 <a href="https://github.com/saishsolanki/capstone-project" target="_blank">Capstone Project</a>
@@ -167,20 +159,14 @@ Type '<span class="success">lab</span>' for interactive security demonstrations.
 💭 <span class="success">Journey Highlights:</span>
    • 24-hour practical exam simulation
    • Compromised 15+ vulnerable machines in lab environment
-   • Developed resilience through "Try Harder" methodology
+   • Developed Anger management due to the Relia machine :)
    • Enhanced report writing for technical stakeholders
 
 <span class="command-category">🔄 CONTINUOUS LEARNING PATH</span>
 
 <span class="success">📚 Planned Certifications (2024-2025):</span>
-   • OSWE - Web Application Testing
-   • CRTP - Certified Red Team Professional
+   • OSEP - Offensive Security Experienced Professional
    • CISSP - Information Systems Security Professional
-
-<span class="success">🏗️ Foundation Certifications:</span>
-   • CompTIA Security+ concepts (self-studied)
-   • Various Cybersecurity specialization courses
-   • Continuous training through practical labs
 
 <span class="command-category">📈 SKILLS PROGRESSION</span>
 Each certification represents months of dedicated study, hands-on practice, 
@@ -205,9 +191,53 @@ Type '<span class="success">blog</span>' to read about my OSCP journey in detail
    🏷️ <span class="success">Focus Areas:</span> OSCP Prep, Red Team, Forensics
 
 <span class="success">🌐 CTFtime Participation</span>
-   👥 <span class="success">Team Collaborations:</span> Multiple cybersecurity CTF events
-   📅 <span class="success">Recent Events:</span> University and online competitions
-   🧠 <span class="success">Specialty:</span> Web exploitation, cryptography challenges
+<div style="margin-left: 1em;">
+    <span class="success">2021</span>
+    <table class="ctf-table">
+        <tr><th>Place</th><th>Event</th><th>CTF points</th><th>Rating points</th></tr>
+        <tr><td>625</td><td>ASIS CTF Quals 2021</td><td>20.0000</td><td>0.712</td></tr>
+        <tr><td>468</td><td>RaRCTF 2021</td><td>120.0000</td><td>0.233</td></tr>
+        <tr><td>426</td><td>Zh3r0 CTF V2</td><td>1.0000</td><td>0.053</td></tr>
+        <tr><td>643</td><td>HeroCTF v3</td><td>1.0000</td><td>0.041</td></tr>
+        <tr><td>268</td><td>S4CTF 2021</td><td>16.0000</td><td>0.135</td></tr>
+        <tr><td>2205</td><td>Cyber Apocalypse 2021</td><td>325.0000</td><td>0.413</td></tr>
+        <tr><td>320</td><td>UMDCTF 2021</td><td>401.0000</td><td>0.000</td></tr>
+        <tr><td>405</td><td>PlaidCTF 2021</td><td>1.0000</td><td>0.262</td></tr>
+        <tr><td>234</td><td>HackPack CTF 2021</td><td>151.0000</td><td>0.000</td></tr>
+        <tr><td>388</td><td>RITSEC CTF 2021</td><td>335.0000</td><td>0.000</td></tr>
+        <tr><td>1195</td><td>ångstromCTF 2021</td><td>5.0000</td><td>0.075</td></tr>
+        <tr><td>265</td><td>FooBar CTF 2021</td><td>101.0000</td><td>0.354</td></tr>
+        <tr><td>216</td><td>VolgaCTF 2021 Qualifier</td><td>1.0000</td><td>0.160</td></tr>
+        <tr><td>603</td><td>UMassCTF 2021</td><td>50.0000</td><td>0.190</td></tr>
+        <tr><td>181</td><td>Securinets CTF Quals 2021</td><td>50.0000</td><td>0.359</td></tr>
+        <tr><td>547</td><td>LINE CTF 2021</td><td>50.0000</td><td>0.209</td></tr>
+        <tr><td>205</td><td>BlueHens CTF 2021</td><td>5.0000</td><td>0.122</td></tr>
+        <tr><td>258</td><td>Codefest CTF 2020</td><td>100.0000</td><td>0.610</td></tr>
+        <tr><td>212</td><td>vishwaCTF 2021</td><td>1233.0000</td><td>1.391</td></tr>
+        <tr><td>460</td><td>UTCTF 2021</td><td>810.0000</td><td>0.858</td></tr>
+        <tr><td>173</td><td>DaVinciCTF 2021</td><td>95.0000</td><td>0.918</td></tr>
+        <tr><td>87</td><td>Break the Syntax CTF 2021</td><td>5.0000</td><td>0.296</td></tr>
+        <tr><td>718</td><td>zer0pts CTF 2021</td><td>50.0000</td><td>0.270</td></tr>
+        <tr><td>937</td><td>Tenable CTF 2021</td><td>375.0000</td><td>1.258</td></tr>
+        <tr><td>165</td><td>TrollCAT CTF 2021</td><td>800.0000</td><td>2.018</td></tr>
+        <tr><td>537</td><td>DiceCTF 2021</td><td>1.0000</td><td>0.051</td></tr>
+    </table>
+    <br>
+    <span class="success">2022</span>
+    <table class="ctf-table">
+        <tr><th>Place</th><th>Event</th><th>CTF points</th><th>Rating points</th></tr>
+        <tr><td>253</td><td>Hackappatoi CTF '22</td><td>50.0000</td><td>0.213</td></tr>
+        <tr><td>507</td><td>VishwaCTF 2022</td><td>600.0000</td><td>0.638</td></tr>
+    </table>
+    <br>
+    <span class="success">2023</span>
+    <table class="ctf-table">
+        <tr><th>Place</th><th>Event</th><th>CTF points</th><th>Rating points</th></tr>
+        <tr><td>874</td><td>TJCTF 2023</td><td>6.0000</td><td>0.073</td></tr>
+        <tr><td>287</td><td>Incognito 4.0</td><td>539.0000</td><td>0.941</td></tr>
+        <tr><td>336</td><td>0xL4ughCTF 2023</td><td>10.0000</td><td>0.106</td></tr>
+    </table>
+</div>
 
 <span class="command-category">📈 SKILL DEVELOPMENT</span>
 • <span class="success">Problem-Solving:</span> Enhanced through diverse challenge formats
@@ -327,8 +357,8 @@ contributing to knowledge sharing and collaborative problem-solving.
         contact: `
 <span class="command-category">📞 GET IN TOUCH</span>
 
-<span class="success">📧 Email:</span> <a href="mailto:saish.solanki@protonmail.com">saish.solanki@protonmail.com</a>
-   <span class="command-description">Secure communication preferred - PGP key available on request</span>
+<span class="success">📧 Email:</span> <a href="mailto:saish.b.solanki@gmail.com">saish.b.solanki@gmail.com</a>
+    <span class="command-description">Secure communication preferred - PGP key available on request</span>
 
 <span class="success">💼 LinkedIn:</span> <a href="https://linkedin.com/in/saishsolanki" target="_blank">linkedin.com/in/saishsolanki</a>
    <span class="command-description">Professional networking and career updates</span>
@@ -445,7 +475,6 @@ Type '<span class="success">contact</span>' for professional contact information
 `,
         news: `
 <span class="command-category">📰 CYBERSECURITY NEWS & INSIGHTS</span>
-
 <span class="success">🚨 Latest Security Advisories</span>
 <span class="status-warning">⚠️ High Priority:</span> Keep systems updated with latest security patches
 • Regular monitoring of CVE databases for new vulnerabilities
@@ -510,10 +539,10 @@ and persists across sessions for optimal user experience.
 Services Offered:
 I am available for freelance and contract opportunities in the following areas:
 
-- **Web Application Security Assessment:** Comprehensive testing for web apps.
-- **Network Penetration Testing:** Internal and external network security analysis.
-- **Security Code Review:** Identifying vulnerabilities in source code.
-- **Custom Security Tooling:** Developing scripts and tools for security tasks.
+- Web Application Security Assessment: Comprehensive testing for web apps.
+- Network Penetration Testing: Internal and external network security analysis.
+- Security Code Review: Identifying vulnerabilities in source code.
+- Custom Security Tooling: Developing scripts and tools for security tasks.
 
 To discuss a project, please reach out via my contact details ('contact' command).
 `,
@@ -521,9 +550,9 @@ To discuss a project, please reach out via my contact details ('contact' command
 Responsible Disclosure:
 I believe in and support responsible disclosure. If you have found a security vulnerability on this website or any of my projects, please report it.
 
-- **Policy:** Do not publicly disclose the vulnerability until it has been addressed. Act in good faith and avoid privacy violations or data destruction.
-- **Contact:** Please email a detailed report to <a href="mailto:saish.solanki@protonmail.com">saish.solanki@protonmail.com</a> with the subject "Security Vulnerability Report".
-- **Acknowledgement:** I will make my best effort to respond to your report promptly. Hall of Fame / recognition can be provided.
+- Policy: Do not publicly disclose the vulnerability until it has been addressed. Act in good faith and avoid privacy violations or data destruction.
+- Contact: Please email a detailed report to <a href="mailto:saish.b.solanki@gmail.com">saish.b.solanki@gmail.com</a> with the subject "Security Vulnerability Report".
+- Acknowledgement: I will make my best effort to respond to your report promptly. Hall of Fame / recognition can be provided.
 
 You can also find my security.txt file at /.well-known/security.txt
 `,
@@ -651,14 +680,14 @@ You can also find my security.txt file at /.well-known/security.txt
         if (flag === correctFlag) {
             return `
 <span class="success">
-   ___  __   __  __   __      __   ___  __       ___    __  
-  / __\` /  \\ |__) /__\` /__\`    /__\` |__  |__)  |\\ | |__  |  \\ 
-  \\__> \\__/ |  \\ .__/ .__/    .__/ |___ |  \\  | \\| |___ |__/ 
+
+█░░ █▀▀ ▀█▀   ▀█▀ █░█ █▀▀   █░█ ▄▀█ █▀▀ █▄▀ █ █▄░█ █▀▀   █▄▄ █▀▀ █▀▀ █ █▄░█   ▀ ▀▄
+█▄▄ ██▄ ░█░   ░█░ █▀█ ██▄   █▀█ █▀█ █▄▄ █░█ █ █░▀█ █▄█   █▄█ ██▄ █▄█ █ █░▀█   ▄ ▄▀
 </span>
 Congratulations! You've found the flag. This demonstrates the kind of curiosity I apply to my work.
 `;
         } else {
-            return `<span class="error">Incorrect flag. Keep looking!</span>`;
+            return `<span class="error">I wish this was the flag too!. Keep looking!</span>`;
         }
     }
 
@@ -705,9 +734,57 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         }
     });
 
-    terminal.addEventListener('click', () => {
-        input.focus();
+
+    terminal.addEventListener('click', (e) => {
+        // Only focus the terminal input if the click is NOT on an input, textarea, or button
+        const tag = e.target.tagName.toLowerCase();
+        if (tag !== 'input' && tag !== 'textarea' && tag !== 'button') {
+            input.focus();
+        }
     });
+
+    // Add Enter key support for lab input fields
+    function addLabInputEnterHandlers() {
+        const passwordInput = document.getElementById('passwordInput');
+        if (passwordInput) {
+            passwordInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    window.analyzePassword();
+                }
+            });
+        }
+        const encryptInput = document.getElementById('encryptInput');
+        if (encryptInput) {
+            encryptInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    window.encryptText();
+                }
+            });
+        }
+        const portInput = document.getElementById('portInput');
+        if (portInput) {
+            portInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    window.simulatePortScan();
+                }
+            });
+        }
+        const base64Input = document.getElementById('base64Input');
+        if (base64Input) {
+            base64Input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    window.checkBase64();
+                }
+            });
+        }
+    }
+
+    // Call after DOM and terminal are initialized
+    setTimeout(addLabInputEnterHandlers, 100);
 
     initTerminal();
 });
