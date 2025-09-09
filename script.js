@@ -22,15 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.addEventListener('click', toggleTheme);
 
     const welcomeMessage = `
-
+<div style="text-align:center;padding:18px 0 8px 0;">
+  <pre style="display:inline-block;margin:0 auto;font-size:clamp(0.7em,2vw,1.15em);line-height:1.1;white-space:pre;overflow-x:auto;max-width:100%;background:none;border:none;color:var(--success);font-family:monospace;">
 ░██████╗░█████╗░██╗░██████╗██╗░░██╗  ░░██╗██╗░█████╗░░░██╗██╗
 ██╔════╝██╔══██╗██║██╔════╝██║░░██║  ░██╔╝██║██╔══██╗░██╔╝██║
 ╚█████╗░███████║██║╚█████╗░███████║  ██╔╝░██║██║░░██║██╔╝░██║
 ░╚═══██╗██╔══██║██║░╚═══██╗██╔══██║  ███████║██║░░██║███████║
 ██████╔╝██║░░██║██║██████╔╝██║░░██║  ╚════██║╚█████╔╝╚════██║
 ╚═════╝░╚═╝░░╚═╝╚═╝╚═════╝░╚═╝░░╚═╝  ░░░░░╚═╝░╚════╝░░░░░░╚═╝
-                                                                        
-Welcome to my interactive shell. Type 'help' to see available commands.
+  </pre>
+  <div style="font-size:1.1em;color:var(--text);margin-top:8px;">
+    Welcome to my interactive shell. Type '<span class="success">help</span>' to see available commands.
+  </div>
+</div>
 `;
 
     const commands = {
