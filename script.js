@@ -19,7 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.textContent = '🌙';
     }
     
+
     themeToggle.addEventListener('click', toggleTheme);
+
+    // Resume download button handler
+    const resumeDownload = document.getElementById('resumeDownload');
+    if (resumeDownload) {
+        resumeDownload.addEventListener('click', function() {
+            // Change the file name/path as needed
+            window.open('resume.pdf', '_blank');
+        });
+    }
 
     const welcomeMessage = `
 <div style="text-align:center;padding:18px 0 8px 0;">
@@ -696,13 +706,22 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
     }
 
     function executeCommand(command) {
-        const [cmd, ...args] = command.split(' ');
+        const [rawCmd, ...args] = command.split(' ');
+        const cmd = rawCmd ? rawCmd.toLowerCase() : '';
         const outputElement = document.createElement('div');
         outputElement.classList.add('command-output');
         
         const promptElement = document.createElement('div');
         promptElement.innerHTML = `<span class="prompt">root@saish.io:~#</span> ${command}`;
         output.appendChild(promptElement);
+
+        // Accept commands with first letter capitalized
+        const commandKeys = Object.keys(commands);
+        let matchedCmd = cmd;
+        if (!commands[cmd]) {
+            // Try to match with first letter capitalized
+            matchedCmd = commandKeys.find(k => k.toLowerCase() === cmd);
+        }
 
         if (cmd === 'clear') {
             output.innerHTML = '';
@@ -713,8 +732,8 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         } else if (cmd === 'submitflag') {
             const flag = args[0] || '';
             outputElement.innerHTML = checkFlag(flag);
-        } else if (commands[cmd]) {
-            outputElement.innerHTML = commands[cmd];
+        } else if (matchedCmd && commands[matchedCmd]) {
+            outputElement.innerHTML = commands[matchedCmd];
         } else {
             outputElement.innerHTML = `<span class="error">Command not found: ${command}. Type 'help' for a list of commands.</span>`;
         }
