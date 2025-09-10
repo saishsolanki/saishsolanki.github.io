@@ -65,16 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
   <span class="success">github</span>     - GitHub activity and contributions
   <span class="success">blog</span>       - Technical writeups and insights
 
+
 <span class="command-category">🛡️ SECURITY & SERVICES</span>
-  <span class="success">lab</span>        - Interactive security demonstrations
-  <span class="success">news</span>       - Latest cybersecurity news
-  <span class="success">hireme</span>     - Services I offer
-  <span class="success">secure</span>     - Responsible disclosure policy
+    <span class="success">news</span>       - Latest cybersecurity news
+    <span class="success">hireme</span>     - Services I offer
+    <span class="success">secure</span>     - Responsible disclosure policy
 
 <span class="command-category">🎮 INTERACTIVE</span>
-  <span class="success">submitflag</span> - Submit a flag for the CTF challenge
-  <span class="success">theme</span>      - Toggle dark/light mode
-  <span class="success">clear</span>      - Clear the terminal screen
+    <span class="success">theme</span>      - Toggle dark/light mode
+    <span class="success">clear</span>      - Clear the terminal screen
+
+<span class="command-category">�‍☠️ CTF-STYLE CHALLENGES</span>
+    <span class="success">submitflag</span> - Submit a flag for the CTF challenge
+    <span class="success">lab</span>        - Interactive security demonstrations & CTF challenges
+    <span class="command-description">(The 'lab' command contains hands-on CTF challenges. This section will grow!)</span>
 `,
         about: `
 Hello! I'm Saish, a cybersecurity enthusiast with a passion for offensive security. My expertise lies in identifying and exploiting vulnerabilities to help organizations improve their security posture. I'm driven by a curiosity to understand how systems work and how they can be broken. This terminal is a small example of that passion.
@@ -418,6 +422,12 @@ Decode this: U2FpdGggaXMgYSBza2lsbGVkIGN5YmVyc2VjdXJpdHkgcHJvZmVzc2lvbmFs
 <button onclick="checkBase64()" style="background: var(--border); color: var(--background); border: none; padding: 4px 8px; margin-left: 5px; cursor: pointer; font-family: inherit;">Check</button>
 <div id="base64Result"></div>
 
+<span class="success">Challenge 2: OSINT Flag Hunt</span>
+<span class="command-description">Hint: Visit my LinkedIn profile summary to find the flag. Format: <b>flag&#123;...&#125;</b></span>
+<input type="text" id="osintFlagInput" placeholder="Enter OSINT flag here" style="background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border); padding: 4px; width: 250px; font-family: inherit;">
+<button onclick="checkOsintFlag()" style="background: var(--border); color: var(--background); border: none; padding: 4px 8px; margin-left: 5px; cursor: pointer; font-family: inherit;">Check</button>
+<div id="osintFlagResult"></div>
+
 <span class="command-description">Note: These are educational demonstrations. Real security testing 
 should only be performed on systems you own or have explicit permission to test.</span>
 `,
@@ -570,8 +580,20 @@ I believe in and support responsible disclosure. If you have found a security vu
 
 You can also find my security.txt file at /.well-known/security.txt
 `,
-        clear: ''
+        clear: '',
+        all: '', // placeholder, will be set below
     };
+
+    // After the commands object is defined, set the 'all' command dynamically:
+    commands.all = `
+<span class="command-category">📝 ALL COMMAND OUTPUTS</span>
+${Object.keys(commands).filter(cmd => cmd !== 'all').map(cmd => `
+<div style="margin-bottom:2em;">
+  <span class="success">Command: <b>${cmd}</b></span>
+  <div class="command-output">${commands[cmd]}</div>
+</div>
+`).join('')}
+`;
 
     // Interactive Lab Functions
     window.analyzePassword = function() {
@@ -659,6 +681,17 @@ You can also find my security.txt file at /.well-known/security.txt
             result.innerHTML = '<br><span class="success">🎉 Correct! Well done on the Base64 decoding!</span>';
         } else {
             result.innerHTML = '<br><span class="error">Not quite right. Try decoding the Base64 string.</span>';
+        }
+    };
+    
+    window.checkOsintFlag = function() {
+        const input = document.getElementById('osintFlagInput').value.trim();
+        const result = document.getElementById('osintFlagResult');
+        const expected = "flag{osint_linkedin}"; // Change this to your actual flag
+        if (input.toLowerCase() === expected.toLowerCase()) {
+            result.innerHTML = '<br><span class="success">🎉 Correct! You found the OSINT flag from LinkedIn!</span>';
+        } else {
+            result.innerHTML = '<br><span class="error">Not quite right. Check my LinkedIn profile summary for the flag.</span>';
         }
     };
     
@@ -801,6 +834,15 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     window.checkBase64();
+                }
+            });
+        }
+        const osintFlagInput = document.getElementById('osintFlagInput');
+        if (osintFlagInput) {
+            osintFlagInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    window.checkOsintFlag();
                 }
             });
         }
