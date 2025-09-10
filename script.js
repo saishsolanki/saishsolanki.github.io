@@ -22,14 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     themeToggle.addEventListener('click', toggleTheme);
 
-    // Resume download button handler
+    // Resume download button handler (fixed for both static and dynamic buttons)
     const resumeDownload = document.getElementById('resumeDownload');
     if (resumeDownload) {
         resumeDownload.addEventListener('click', function() {
-            // Change the file name/path as needed
             window.open('resume.pdf', '_blank');
         });
     }
+    // Event delegation for dynamically rendered Download PDF button in terminal
+    document.getElementById('output').addEventListener('click', function(e) {
+        if (e.target && e.target.tagName === 'BUTTON' && e.target.textContent.includes('Download PDF')) {
+            window.downloadPDF();
+        }
+    });
 
     const welcomeMessage = `
 <div style="text-align:center;padding:18px 0 8px 0;">
@@ -423,7 +428,7 @@ Decode this: U2FpdGggaXMgYSBza2lsbGVkIGN5YmVyc2VjdXJpdHkgcHJvZmVzc2lvbmFs
 <div id="base64Result"></div>
 
 <span class="success">Challenge 2: OSINT Flag Hunt</span>
-<span class="command-description">Hint: Visit my LinkedIn profile summary to find the flag. Format: <b>flag&#123;...&#125;</b></span>
+<span class="command-description">To find the flag, investigate my professional digital footprint. The answer is hidden in plain sight :) Format: <b>flag&#123;...&#125;</b></span>
 <input type="text" id="osintFlagInput" placeholder="Enter OSINT flag here" style="background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border); padding: 4px; width: 250px; font-family: inherit;">
 <button onclick="checkOsintFlag()" style="background: var(--border); color: var(--background); border: none; padding: 4px 8px; margin-left: 5px; cursor: pointer; font-family: inherit;">Check</button>
 <div id="osintFlagResult"></div>
@@ -704,8 +709,7 @@ ${Object.keys(commands).filter(cmd => cmd !== 'all').map(cmd => `
     };
     
     window.downloadPDF = function() {
-        // In a real implementation, this would generate/serve a PDF
-        alert('PDF download functionality would be implemented here.\nContact me for an updated resume in PDF format.');
+        window.open('resume.pdf', '_blank');
     };
     
     // Theme management function
@@ -743,7 +747,7 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         const cmd = rawCmd ? rawCmd.toLowerCase() : '';
         const outputElement = document.createElement('div');
         outputElement.classList.add('command-output');
-        
+
         const promptElement = document.createElement('div');
         promptElement.innerHTML = `<span class="prompt">root@saish.io:~#</span> ${command}`;
         output.appendChild(promptElement);
@@ -757,7 +761,7 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         }
 
         if (cmd === 'clear') {
-            output.innerHTML = '';
+            output.innerHTML = welcomeMessage;
             return;
         } else if (cmd === 'theme') {
             toggleThemeCommand();
@@ -767,10 +771,19 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
             outputElement.innerHTML = checkFlag(flag);
         } else if (matchedCmd && commands[matchedCmd]) {
             outputElement.innerHTML = commands[matchedCmd];
+            // Fix resume download button after rendering resume command
+            if (matchedCmd === 'resume') {
+                setTimeout(() => {
+                    const resumeBtn = document.querySelector('button[onclick^="downloadPDF"]');
+                    if (resumeBtn) {
+                        resumeBtn.onclick = window.downloadPDF;
+                    }
+                }, 0);
+            }
         } else {
             outputElement.innerHTML = `<span class="error">Command not found: ${command}. Type 'help' for a list of commands.</span>`;
         }
-        
+
         output.appendChild(outputElement);
     }
 

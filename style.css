@@ -79,6 +79,7 @@ body.light-theme {
 #terminal {
     border: 2px solid var(--border);
     padding: 15px;
+    padding-top: clamp(60px, 8vw, 80px); /* Responsive top padding for fixed buttons */
     height: calc(100vh - 50px);
     overflow-y: auto;
     position: relative;
