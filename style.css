@@ -83,10 +83,37 @@ body.light-theme {
     height: calc(100vh - 50px);
     overflow-y: auto;
     position: relative;
-    box-shadow: 0 0 20px var(--border);
-    animation: flicker 0.15s infinite;
+    box-shadow: 0 0 20px var(--border), inset 0 0 50px rgba(0, 255, 136, 0.1);
+    animation: flicker 0.15s infinite, crt-glow 2s ease-in-out infinite alternate;
     border-radius: 8px;
     background: linear-gradient(135deg, var(--background) 0%, var(--bg-secondary) 100%);
+    /* Terminal window styling */
+    margin-top: 30px;
+}
+
+/* Terminal window header */
+#terminal::after {
+    content: "● ● ●";
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    z-index: 5;
+}
+
+@keyframes crt-glow {
+    0% { box-shadow: 0 0 20px var(--border), inset 0 0 50px rgba(0, 255, 136, 0.1); }
+    100% { box-shadow: 0 0 30px var(--border), inset 0 0 60px rgba(0, 255, 136, 0.2); }
 }
 
 /* Enhanced responsive design */
@@ -122,7 +149,7 @@ body.light-theme {
     }
 }
 
-/* CRT Scanlines Effect */
+/* Enhanced CRT Scanlines Effect */
 #terminal::before {
     content: " ";
     display: block;
@@ -131,10 +158,19 @@ body.light-theme {
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)),
+        linear-gradient(0deg, transparent 50%, rgba(0, 255, 136, 0.03) 50%);
     z-index: 2;
-    background-size: 100% 4px, 3px 100%;
+    background-size: 100% 4px, 3px 100%, 100% 2px;
     pointer-events: none;
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { background-position: 0 0, 0 0, 0 0; }
+    100% { background-position: 0 4px, 0 0, 0 2px; }
 }
 
 @keyframes flicker {
@@ -167,6 +203,38 @@ body.light-theme {
     flex-grow: 1;
     outline: none;
     caret-color: var(--text);
+    position: relative;
+}
+
+/* Blinking cursor effect */
+#input::after {
+    content: "█";
+    color: var(--text);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Typing animation for command output */
+.typing {
+    overflow: hidden;
+    border-right: 2px solid var(--text);
+    white-space: nowrap;
+    animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--text); }
 }
 
 .command-output {
@@ -269,6 +337,20 @@ a:hover {
     color: var(--warning);
 }
 
+/* 
+   CSS CTF Challenge: For the dedicated few who examine stylesheets...
+   You've found the expert-level flag: flag{pwn3d_th3_t3rm1n4l}
+   
+   ██████╗ ██╗    ██╗███╗   ██╗███████╗██████╗     ██████╗██╗   ██╗    ██████╗███████╗███████╗
+   ██╔══██╗██║    ██║████╗  ██║██╔════╝██╔══██╗    ██╔══██╗╚██╗ ██╔╝    ██╔════╝██╔════╝██╔════╝
+   ██████╔╝██║ █╗ ██║██╔██╗ ██║█████╗  ██║  ██║    ██████╔╝ ╚████╔╝     ██║     ███████╗███████╗
+   ██╔═══╝ ██║███╗██║██║╚██╗██║██╔══╝  ██║  ██║    ██╔══██╗  ╚██╔╝      ██║     ╚════██║╚════██║
+   ██║     ╚███╔███╔╝██║ ╚████║███████╗██████╔╝    ██████╔╝   ██║       ╚██████╗███████║███████║
+   ╚═╝      ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝╚═════╝     ╚═════╝    ╚═╝        ╚═════╝╚══════╝╚══════╝
+   
+   Congratulations! You've demonstrated advanced reconnaissance skills.
+*/
+
 /* Skill bars for skills visualization */
 .skill-bar {
     background: var(--bg-secondary);
@@ -277,6 +359,7 @@ a:hover {
     margin: 5px 0;
     border-radius: 3px;
     overflow: hidden;
+    position: relative;
 }
 
 .skill-fill {
@@ -288,4 +371,60 @@ a:hover {
     padding-left: 5px;
     font-size: 12px;
     color: var(--background);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: skillShine 2s infinite;
+}
+
+@keyframes skillShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* CTF Table styling */
+.ctf-table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 12px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.ctf-table th,
+.ctf-table td {
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    text-align: left;
+}
+
+.ctf-table th {
+    background: var(--bg-secondary);
+    color: var(--success);
+    font-weight: bold;
+}
+
+.ctf-table tr:nth-child(even) {
+    background: rgba(0, 255, 136, 0.05);
+}
+
+/* Mobile responsiveness for tables */
+@media (max-width: 768px) {
+    .ctf-table {
+        font-size: 10px;
+    }
+    
+    .ctf-table th,
+    .ctf-table td {
+        padding: 2px 4px;
+    }
 }

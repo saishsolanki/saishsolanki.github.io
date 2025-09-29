@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminal = document.getElementById('terminal');
     const themeToggle = document.getElementById('themeToggle');
     
+    // Command history and auto-complete functionality
+    let commandHistory = [];
+    let historyIndex = -1;
+    let currentInput = '';
+    
     // Theme management
     function toggleTheme() {
         document.body.classList.toggle('light-theme');
@@ -54,36 +59,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const commands = {
         help: `
-<span class="command-category">📋 NAVIGATION & INFO</span>
+<span class="command-category">📋 SYSTEM & NAVIGATION</span>
+  <span class="success">whoami</span>     - Display current user and security privileges
+  <span class="success">ls</span>         - List directory contents and available resources
+  <span class="success">cat</span>        - Display file contents (try: cat resume.txt)
+  <span class="success">sudo</span>       - Access elevated security tools and commands
+  <span class="success">clear</span>      - Clear the terminal screen
+
+<span class="command-category">📋 PERSONAL INFO</span>
   <span class="success">about</span>      - Who I am and my background
   <span class="success">skills</span>     - Technical skills with visual representation
-  <span class="success">projects</span>   - Interactive project showcase
   <span class="success">contact</span>    - How to reach me
+  <span class="success">social</span>     - Social media and professional networks
 
 <span class="command-category">🎓 PROFESSIONAL</span>
-  <span class="success">certifications</span> - My cybersecurity certification journey
   <span class="success">resume</span>     - Interactive resume with downloadable PDF
+  <span class="success">certs</span>      - Detailed cybersecurity certification journey
+  <span class="success">certifications</span> - Alias for certs command
   <span class="success">testimonials</span> - Professional recommendations
+  <span class="success">projects</span>   - Interactive project showcase
 
-<span class="command-category">🏆 ACHIEVEMENTS</span>
+<span class="command-category">🏆 ACHIEVEMENTS & CONTENT</span>
   <span class="success">ctf</span>        - CTF achievements and rankings
   <span class="success">github</span>     - GitHub activity and contributions
-  <span class="success">blog</span>       - Technical writeups and insights
+  <span class="success">blog</span>       - Technical writeups and research articles
 
+<span class="command-category">🛡️ SECURITY TOOLS & SERVICES</span>
+  <span class="success">nmap</span>       - Network discovery simulation
+  <span class="success">exploit</span>    - Exploit development showcase
+  <span class="success">vulndb</span>     - Vulnerability database search
+  <span class="success">news</span>       - Latest cybersecurity news
+  <span class="success">hireme</span>     - Services I offer
+  <span class="success">calendar</span>   - Book security consultations
+  <span class="success">secure</span>     - Responsible disclosure policy
 
-<span class="command-category">🛡️ SECURITY & SERVICES</span>
-    <span class="success">news</span>       - Latest cybersecurity news
-    <span class="success">hireme</span>     - Services I offer
-    <span class="success">secure</span>     - Responsible disclosure policy
+<span class="command-category">🎮 INTERACTIVE & CUSTOMIZATION</span>
+  <span class="success">theme</span>      - Toggle dark/light mode
+  <span class="success">lab</span>        - Interactive security demonstrations & CTF challenges
 
-<span class="command-category">🎮 INTERACTIVE</span>
-    <span class="success">theme</span>      - Toggle dark/light mode
-    <span class="success">clear</span>      - Clear the terminal screen
+<span class="command-category">🏴‍☠️ CTF-STYLE CHALLENGES</span>
+  <span class="success">flags</span>       - View all available flags and your progress
+  <span class="success">submitflag</span> - Submit a flag for the CTF challenge
+  <span class="success">hints</span>      - Get CTF hunting hints and methodology
+  <span class="success">resetflags</span> - Reset flag progress (for testing)
+  <span class="command-description">🎯 Hidden flags are scattered throughout this system. Can you find them all?</span>
 
-<span class="command-category">�‍☠️ CTF-STYLE CHALLENGES</span>
-    <span class="success">submitflag</span> - Submit a flag for the CTF challenge
-    <span class="success">lab</span>        - Interactive security demonstrations & CTF challenges
-    <span class="command-description">(The 'lab' command contains hands-on CTF challenges. This section will grow!)</span>
+<span class="command-category">💡 TIPS</span>
+• Use <span class="success">Tab</span> for command auto-completion
+• Use <span class="success">↑/↓</span> arrows to navigate command history  
+• Try exploring with commands like 'ls', 'cat', and 'sudo'
+• Some commands have hidden easter eggs - experiment!
 `,
         about: `
 Hello! I'm Saish, a cybersecurity enthusiast with a passion for offensive security. My expertise lies in identifying and exploiting vulnerabilities to help organizations improve their security posture. I'm driven by a curiosity to understand how systems work and how they can be broken. This terminal is a small example of that passion.
@@ -575,6 +600,194 @@ I am available for freelance and contract opportunities in the following areas:
 
 To discuss a project, please reach out via my contact details ('contact' command).
 `,
+        whoami: `
+<span class="success">root@saish.io</span>
+<span class="command-description">Current user: Saish Solanki - OSCP Certified Penetration Tester</span>
+<span class="success">Privileges:</span> Administrator access to offensive security operations
+<span class="success">Groups:</span> cybersec-pros, oscp-certified, redteam-ops, ethical-hackers
+<span class="success">Last login:</span> ${new Date().toLocaleString()} from secure-terminal
+<span class="success">Security clearance:</span> Authorized for vulnerability assessment and penetration testing
+        `,
+        ls: `
+<span class="command-category">📁 DIRECTORY LISTING</span>
+<span class="success">total 8</span>
+drwxr-xr-x  2 saish saish 4096 ${new Date().toDateString()} <span class="success">projects/</span>
+drwxr-xr-x  2 saish saish 4096 ${new Date().toDateString()} <span class="success">certifications/</span>
+drwxr-xr-x  2 saish saish 4096 ${new Date().toDateString()} <span class="success">blog/</span>
+drwxr-xr-x  2 saish saish 4096 ${new Date().toDateString()} <span class="success">tools/</span>
+drwxr-xr-x  2 saish saish 4096 ${new Date().toDateString()} <span class="success">ctf/</span>
+-rw-r--r--  1 saish saish 2048 ${new Date().toDateString()} <span class="success">resume.pdf</span>
+-rw-r--r--  1 saish saish 1024 ${new Date().toDateString()} <span class="success">contact.txt</span>
+-rwx------  1 saish saish  512 ${new Date().toDateString()} <span class="error">.hidden_flag</span>
+
+<span class="command-description">Use 'cat <filename>' to view file contents or 'cd <directory>' to navigate</span>
+        `,
+        'cat resume.txt': `
+<span class="command-category">📄 RESUME.TXT</span>
+<span class="success">=====================================</span>
+<span class="success">SAISH SOLANKI - CYBERSECURITY ANALYST</span>
+<span class="success">=====================================</span>
+
+📧 saish.b.solanki@gmail.com
+🔗 linkedin.com/in/saishsolanki
+💻 github.com/saishsolanki
+🛡️ OSCP Certified Professional
+
+<span class="command-category">SUMMARY</span>
+Offensive security specialist with expertise in penetration testing,
+vulnerability assessment, and security tool development. OSCP certified
+with hands-on experience in real-world security operations.
+
+<span class="command-category">CORE COMPETENCIES</span>
+• Web Application Security Testing    • Network Penetration Testing
+• Active Directory Security          • Exploit Development
+• Python/Bash Scripting            • Linux/Windows Administration
+• Security Tool Development         • Vulnerability Research
+
+<span class="command-category">CERTIFICATIONS</span>
+✓ OSCP - Offensive Security Certified Professional (2024)
+⏳ OSEP - In Progress
+
+Type 'resume' for interactive version or 'contact' for full details
+        `,
+        sudo: () => {
+            return `
+<span class="success">[sudo] password for saish:</span> <span class="command-description">●●●●●●●●</span>
+<span class="success">Access granted. Welcome to the matrix.</span>
+
+<span class="error">⚠️  WARNING: ELEVATED PRIVILEGES ACTIVE ⚠️</span>
+
+<span class="success">You now have administrative access to:</span>
+• Advanced penetration testing tools
+• Vulnerability databases and exploit code  
+• Network scanning and enumeration utilities
+• Custom security assessment frameworks
+
+<span class="command-category">🛡️ AVAILABLE SUDO COMMANDS</span>
+<span class="success">sudo nmap</span>     - Network discovery and security auditing
+<span class="success">sudo metasploit</span> - Penetration testing framework
+<span class="success">sudo burpsuite</span> - Web application security testing
+<span class="success">sudo bloodhound</span> - Active Directory attack path analysis
+
+<span class="command-description">Remember: With great power comes great responsibility. 
+Use these tools ethically and only on systems you own or have explicit permission to test.</span>
+            `;
+        },
+        social: `
+<span class="command-category">🌐 SOCIAL & PROFESSIONAL NETWORKS</span>
+
+<span class="success">💼 Professional</span>
+🔗 <a href="https://linkedin.com/in/saishsolanki" target="_blank">LinkedIn</a> - Professional networking and career updates
+   <span class="command-description">Connect for cybersecurity insights and opportunities</span>
+
+<span class="success">💻 Development</span>
+🔗 <a href="https://github.com/saishsolanki" target="_blank">GitHub</a> - Open source security tools and projects
+   <span class="command-description">Explore my security research and tool development</span>
+
+<span class="success">🎮 Security Communities</span>
+🔗 <a href="https://app.hackthebox.com/users/profile" target="_blank">HackTheBox</a> - Pro Hacker rank
+   <span class="command-description">Follow my machine walkthroughs and challenges</span>
+
+🔗 <a href="https://tryhackme.com/p/saishsolanki" target="_blank">TryHackMe</a> - Top 5% global ranking
+   <span class="command-description">Educational content and skill demonstrations</span>
+
+🔗 <a href="https://ctftime.org/user/profile" target="_blank">CTFtime</a> - Competitive cybersecurity challenges
+   <span class="command-description">CTF participation history and achievements</span>
+
+<span class="command-category">📧 SECURE COMMUNICATION</span>
+For sensitive security matters, please use encrypted channels.
+Type 'contact' for secure communication options.
+        `,
+        certs: `
+<span class="command-category">🎓 CYBERSECURITY CERTIFICATION PORTFOLIO</span>
+
+<span class="success">🏆 ACHIEVED CERTIFICATIONS</span>
+
+<span class="status-online">✓ OSCP - Offensive Security Certified Professional</span>
+   📅 <span class="success">Earned:</span> 2024
+   🎯 <span class="success">Focus:</span> Hands-on penetration testing and exploit development
+   💪 <span class="success">Skills Gained:</span>
+      • Manual vulnerability assessment techniques
+      • Buffer overflow exploitation
+      • Active Directory enumeration and privilege escalation
+      • Custom exploit development and payload crafting
+      • Professional penetration testing report writing
+
+<span class="success">🔄 IN PROGRESS</span>
+
+<span class="status-warning">⏳ OSEP - Offensive Security Experienced Professional</span>
+   📚 <span class="success">Status:</span> Currently studying advanced techniques
+   🎯 <span class="success">Focus Areas:</span>
+      • Advanced evasion techniques
+      • Code review and exploit development
+      • Advanced persistence mechanisms
+      • Bypassing modern security controls
+
+<span class="success">📈 PLANNED CERTIFICATIONS (2024-2025)</span>
+   • CISSP - Information Systems Security Professional
+   • GCIH - GIAC Certified Incident Handler
+   • GCPN - GIAC Certified Penetration Tester
+
+<span class="command-category">🎖️ PROFESSIONAL DEVELOPMENT</span>
+<span class="success">Continuous Learning Metrics:</span>
+• 300+ hours of hands-on lab practice annually
+• Regular participation in security conferences and workshops  
+• Active contribution to cybersecurity community knowledge base
+• Mentoring aspiring security professionals
+
+<span class="command-description">Each certification represents months of dedicated study and
+real-world application. The OSCP journey alone involved 400+ hours
+of lab practice and vulnerability research.</span>
+        `,
+        blog: `
+<span class="command-category">📚 TECHNICAL BLOG & RESEARCH</span>
+
+<span class="success">🎯 FEATURED ARTICLES</span>
+
+<span class="success">1. "My OSCP Journey: 400 Hours to Certification"</span>
+   📅 Published: 2024
+   📖 <span class="command-description">Detailed walkthrough of OSCP preparation strategy, lab experience, 
+      exam tips, and lessons learned. Includes resource recommendations 
+      and timeline planning for aspiring candidates.</span>
+
+<span class="success">2. "Advanced SQL Injection: Beyond Basic Payloads"</span>
+   🔬 <span class="command-description">Deep dive into time-based blind SQL injection techniques,
+      automated testing frameworks, and real-world case studies from
+      penetration testing engagements.</span>
+
+<span class="success">3. "Authentication Logic Flaws: A Penetration Tester's Guide"</span>
+   🔐 <span class="command-description">Analysis of common authentication bypass vulnerabilities,
+      testing methodologies, and secure development practices to 
+      prevent logic flaws.</span>
+
+<span class="success">4. "Building Scalable Security Assessment Frameworks"</span>
+   🏗️ <span class="command-description">Technical guide to developing automated vulnerability
+      scanning integration with manual testing workflows, including
+      architecture patterns and reporting strategies.</span>
+
+<span class="success">📊 INDUSTRY INSIGHTS SERIES</span>
+
+<span class="success">🔍 "Emerging Threat Landscape Analysis"</span>
+   • Evolution of cybersecurity threats in 2024
+   • Impact on enterprise security strategies  
+   • Defensive recommendations for security teams
+
+<span class="success">💡 "Practical Cybersecurity for Developers"</span>
+   • Secure coding practices and vulnerability prevention
+   • Integration of security testing in CI/CD pipelines
+   • Real-world examples from penetration testing findings
+
+<span class="command-category">📈 PUBLICATION METRICS</span>
+• <span class="success">Readership:</span> Growing audience of cybersecurity professionals
+• <span class="success">Engagement:</span> High interaction from industry practitioners
+• <span class="success">Focus:</span> Practical, hands-on security content with real-world applications
+
+<span class="success">🔗 Platform:</span> Published on LinkedIn and personal blog
+<span class="success">📬 Updates:</span> New content published bi-weekly
+
+<span class="command-description">All articles emphasize practical application, ethical hacking
+practices, and knowledge sharing within the cybersecurity community.</span>
+        `,
         secure: `
 Responsible Disclosure:
 I believe in and support responsible disclosure. If you have found a security vulnerability on this website or any of my projects, please report it.
@@ -585,6 +798,202 @@ I believe in and support responsible disclosure. If you have found a security vu
 
 You can also find my security.txt file at /.well-known/security.txt
 `,
+        nmap: `
+<span class="command-category">🔍 NETWORK DISCOVERY SIMULATION</span>
+<span class="success">Starting Nmap scan simulation...</span>
+
+Nmap scan report for saish.io (127.0.0.1)
+Host is up (0.00012s latency).
+
+<span class="success">PORT     STATE SERVICE</span>
+22/tcp   <span class="status-online">open</span>  ssh
+80/tcp   <span class="status-online">open</span>  http  
+443/tcp  <span class="status-online">open</span>  https
+3389/tcp <span class="error">closed</span> ms-wbt-server
+
+<span class="command-category">🛡️ SECURITY SCAN RESULTS</span>
+| ssh-hostkey: 
+|   2048 aa:bb:cc:dd:ee:ff (RSA)
+|_  256 ff:ee:dd:cc:bb:aa (ECDSA)
+| http-title: Saish Solanki - Cybersecurity Professional
+|_Requested resource was https://saish.io/
+| ssl-cert: Subject: CN=saish.io
+|_Not valid after: 2025-12-31T23:59:59
+
+<span class="success">Nmap done:</span> 1 IP address (1 host up) scanned in 2.45 seconds
+<span class="command-description">Note: This is a simulation for educational purposes.</span>
+        `,
+        exploit: `
+<span class="command-category">🎯 EXPLOIT DEVELOPMENT SHOWCASE</span>
+<span class="error">⚠️ WARNING: Educational demonstration only ⚠️</span>
+
+<span class="success">Available Exploit Modules:</span>
+
+<span class="success">1. Buffer Overflow Demonstration</span>
+   📝 <span class="command-description">Classic stack-based buffer overflow with NOP sled</span>
+   🎯 Target: Simulated vulnerable application
+   💊 Payload: Custom shellcode execution
+   
+<span class="success">2. SQL Injection Exploitation</span>
+   📝 <span class="command-description">Time-based blind SQL injection automation</span>
+   🎯 Target: Web application database
+   💊 Payload: Data extraction and authentication bypass
+
+<span class="success">3. Authentication Logic Bypass</span>
+   📝 <span class="command-description">Parameter manipulation and session fixation</span>
+   🎯 Target: Web application login system
+   💊 Payload: Privilege escalation and unauthorized access
+
+<span class="command-category">🔬 EXPLOIT DEVELOPMENT PROCESS</span>
+1. <span class="success">Reconnaissance:</span> Target analysis and vulnerability identification
+2. <span class="success">Weaponization:</span> Payload development and testing
+3. <span class="success">Delivery:</span> Exploit execution and verification
+4. <span class="success">Remediation:</span> Vulnerability documentation and fix recommendations
+
+<span class="error">ETHICAL NOTICE:</span> All demonstrated techniques are for educational
+purposes and authorized testing environments only. Unauthorized use
+of these techniques against systems you do not own is illegal.
+        `,
+        vulndb: `
+<span class="command-category">🗃️ VULNERABILITY DATABASE SEARCH</span>
+
+<span class="success">Recent High-Severity Vulnerabilities:</span>
+
+<span class="error">CVE-2024-XXXX</span> - Remote Code Execution in Web Frameworks
+   🎯 <span class="success">CVSS Score:</span> 9.8 (Critical)
+   📊 <span class="success">Impact:</span> Complete system compromise possible
+   🛠️ <span class="success">Mitigation:</span> Update to latest version immediately
+
+<span class="error">CVE-2024-YYYY</span> - Privilege Escalation in Operating Systems  
+   🎯 <span class="success">CVSS Score:</span> 8.4 (High)
+   📊 <span class="success">Impact:</span> Local privilege escalation to root/admin
+   🛠️ <span class="success">Mitigation:</span> Apply security patches and audit user permissions
+
+<span class="success">Search Options:</span>
+• vulndb search <keyword> - Search for specific vulnerabilities
+• vulndb recent - Show recently disclosed vulnerabilities  
+• vulndb critical - Filter critical severity only
+• vulndb product <name> - Search vulnerabilities in specific products
+
+<span class="command-category">📊 VULNERABILITY STATISTICS</span>
+<span class="success">Total CVEs in database:</span> 200,000+
+<span class="success">Critical vulnerabilities (2024):</span> 1,250+
+<span class="success">High-severity web app vulns:</span> 3,400+
+<span class="success">Network infrastructure vulns:</span> 850+
+
+<span class="command-description">Database updated daily from official sources including
+NIST NVD, security vendors, and responsible disclosure programs.</span>
+        `,
+        calendar: `
+<span class="command-category">📅 CONSULTATION BOOKING SYSTEM</span>
+
+<span class="success">🕒 AVAILABLE TIME SLOTS</span>
+
+<span class="success">Week of ${new Date().toDateString()}:</span>
+• Monday   10:00 AM - 12:00 PM EST  [<span class="status-online">Available</span>]
+• Tuesday   2:00 PM -  4:00 PM EST  [<span class="status-online">Available</span>]  
+• Wednesday 9:00 AM - 11:00 AM EST  [<span class="error">Booked</span>]
+• Thursday  3:00 PM -  5:00 PM EST  [<span class="status-online">Available</span>]
+• Friday   11:00 AM -  1:00 PM EST  [<span class="status-online">Available</span>]
+
+<span class="success">🎯 CONSULTATION TYPES</span>
+
+<span class="success">Security Assessment Planning</span> (1 hour)
+   💰 Rate: $150/hour
+   📋 Includes: Scope definition, methodology discussion, timeline planning
+
+<span class="success">Vulnerability Report Review</span> (2 hours)
+   💰 Rate: $150/hour  
+   📋 Includes: Finding analysis, risk prioritization, remediation planning
+
+<span class="success">Career Mentoring - Cybersecurity</span> (1 hour)
+   💰 Rate: $100/hour
+   📋 Includes: OSCP guidance, career planning, skill development advice
+
+<span class="success">📞 TO BOOK A CONSULTATION:</span>
+Email: <a href="mailto:saish.b.solanki@gmail.com?subject=Consultation%20Booking">saish.b.solanki@gmail.com</a>
+Subject: "Consultation Booking - [Service Type]"
+
+Include:
+• Preferred time slot from available options
+• Brief description of consultation needs  
+• Your timezone for scheduling coordination
+
+<span class="success">⏰ RESPONSE TIME:</span> Booking confirmations within 24 hours
+<span class="success">🌍 TIMEZONE:</span> Flexible scheduling for international clients
+        `,
+        flags: () => {
+            const flags = window.flags || {};
+            let discoveredFlags = JSON.parse(localStorage.getItem('discoveredFlags')) || [];
+            
+            const flagsList = Object.entries(flags).map(([flag, data]) => `
+<span class="success">${flag}</span>
+   🎯 <span class="command-description">Difficulty:</span> ${data.difficulty}
+   📍 <span class="command-description">Location:</span> ${data.location} 
+   💰 <span class="command-description">Points:</span> ${data.points}
+   💡 <span class="command-description">Hint:</span> ${data.hint}
+   ${discoveredFlags.includes(flag) ? '<span class="status-online">✓ FOUND</span>' : '<span class="error">❌ NOT FOUND</span>'}
+`).join('');
+            
+            const totalPoints = discoveredFlags.reduce((total, f) => {
+                const points = {
+                    'flag{w3lc0me_t0_my_t3rm1n4l}': 100,
+                    'flag{oscp_certified_hacker}': 200,
+                    'flag{sudo_make_me_a_sandwich}': 150,
+                    'flag{1337_h4x0r_sk1llz}': 300,
+                    'flag{pwn3d_th3_t3rm1n4l}': 500
+                };
+                return total + (points[f] || 0);
+            }, 0);
+            
+            return `
+<span class="command-category">🏴‍☠️ CTF FLAG HUNT PROGRESS</span>
+
+<span class="success">Available Flags (${Object.keys(flags).length} total):</span>
+${flagsList}
+
+<span class="success">Your Progress:</span>
+📊 Flags Found: ${discoveredFlags.length}/${Object.keys(flags).length}
+🏆 Total Points: ${totalPoints}
+
+<span class="command-category">🔍 TESTING COMMANDS</span>
+<span class="success">submitflag [flag]</span> - Submit a discovered flag
+<span class="success">resetflags</span> - Reset progress (for testing)
+<span class="success">hints</span> - Get additional hints
+            `;
+        },
+        resetflags: () => {
+            localStorage.removeItem('discoveredFlags');
+            discoveredFlags = [];
+            return '<span class="success">🔄 Flag progress reset! All flags are now undiscovered.</span>';
+        },
+        hints: `
+<span class="command-category">💡 FLAG HUNTING HINTS</span>
+
+<span class="success">General CTF Methodology:</span>
+1. <span class="success">Reconnaissance:</span> Examine all source code (HTML, CSS, JS)
+2. <span class="success">Command Exploration:</span> Try different commands and parameters
+3. <span class="success">OSINT:</span> Check external links and social media
+4. <span class="success">Source Analysis:</span> Look for comments and hidden content
+5. <span class="success">Interactive Testing:</span> Experiment with terminal features
+
+<span class="success">Specific Areas to Investigate:</span>
+• 🔍 HTML source code comments
+• 🎨 CSS stylesheet comments  
+• 💻 JavaScript code analysis
+• 🔐 Administrative commands (sudo, etc.)
+• 🌐 Social media profiles and professional networks
+
+<span class="success">Pro Tips:</span>
+• Use browser Developer Tools (F12)
+• Try variations of commands
+• Look for ASCII art and hidden messages
+• Check both obvious and subtle hiding spots
+• Follow external links for OSINT challenges
+
+<span class="command-description">Remember: Think like a penetration tester! 
+Leave no stone unturned in your reconnaissance.</span>
+        `,
         clear: '',
         all: '', // placeholder, will be set below
     };
@@ -769,6 +1178,63 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         } else if (cmd === 'submitflag') {
             const flag = args[0] || '';
             outputElement.innerHTML = checkFlag(flag);
+        } else if (cmd === 'cat' && args[0]) {
+            const filename = args[0];
+            const fullCommand = `cat ${filename}`;
+            if (commands[fullCommand]) {
+                outputElement.innerHTML = commands[fullCommand];
+            } else {
+                outputElement.innerHTML = `<span class="error">cat: ${filename}: No such file or directory</span>`;
+            }
+        } else if (cmd === 'sudo' && args.length === 0) {
+            outputElement.innerHTML = commands.sudo();
+        } else if (cmd === 'sudo' && args[0] === 'flag') {
+            // Auto-submit the sudo flag
+            const sudoFlag = 'flag{sudo_make_me_a_sandwich}';
+            let discoveredFlags = JSON.parse(localStorage.getItem('discoveredFlags')) || [];
+            
+            if (!discoveredFlags.includes(sudoFlag)) {
+                discoveredFlags.push(sudoFlag);
+                localStorage.setItem('discoveredFlags', JSON.stringify(discoveredFlags));
+                
+                outputElement.innerHTML = `
+<span class="success">🎉 SUDO FLAG CAPTURED! 🎉</span>
+
+<span class="success">Flag:</span> ${sudoFlag}
+<span class="success">Difficulty:</span> Easy
+<span class="success">Points:</span> 150
+<span class="success">Location:</span> Command exploration
+
+<span class="success">Progress: ${discoveredFlags.length}/5 flags discovered</span>
+<span class="success">Total Points: ${discoveredFlags.reduce((total, f) => {
+    const points = {
+        'flag{w3lc0me_t0_my_t3rm1n4l}': 100,
+        'flag{oscp_certified_hacker}': 200,
+        'flag{sudo_make_me_a_sandwich}': 150,
+        'flag{1337_h4x0r_sk1llz}': 300,
+        'flag{pwn3d_th3_t3rm1n4l}': 500
+    };
+    return total + (points[f] || 0);
+}, 0)}</span>
+
+<span class="command-description">Excellent! You discovered that administrative privileges reveal hidden secrets!</span>
+`;
+            } else {
+                outputElement.innerHTML = '<span class="status-warning">Sudo flag already discovered! Try other commands.</span>';
+            }
+        } else if (cmd === 'konami') {
+            outputElement.innerHTML = '<span class="success">🎮 Konami Code activated! You\'ve got the spirit of a true gamer-hacker!</span>';
+        } else if (cmd === 'matrix') {
+            outputElement.innerHTML = '<span class="success">🔴 Take the red pill... 🔵 Take the blue pill... The choice is yours.</span>';
+        } else if (cmd === 'hacktheplanet') {
+            outputElement.innerHTML = '<span class="success">🌍 HACK THE PLANET! 🌍<br>"They\'re trashing our rights! Trashing! Trashing!"</span>';
+        } else if (cmd === 'certs' || cmd === 'certifications') {
+            // Handle both certs and certifications commands
+            outputElement.innerHTML = commands.certs || commands.certifications;
+        } else if (cmd === 'resetflags') {
+            outputElement.innerHTML = commands.resetflags();
+        } else if (cmd === 'flags') {
+            outputElement.innerHTML = commands.flags();
         } else if (matchedCmd && commands[matchedCmd]) {
             outputElement.innerHTML = commands[matchedCmd];
             // Fix resume download button after rendering resume command
@@ -797,11 +1263,56 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
             const command = input.value.trim();
             if (command) {
                 executeCommand(command);
+                // Add to command history
+                if (commandHistory[commandHistory.length - 1] !== command) {
+                    commandHistory.push(command);
+                }
+                historyIndex = -1;
             }
             input.value = '';
             terminal.scrollTop = terminal.scrollHeight;
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (historyIndex === -1) {
+                currentInput = input.value;
+                historyIndex = commandHistory.length - 1;
+            } else if (historyIndex > 0) {
+                historyIndex--;
+            }
+            if (historyIndex >= 0 && commandHistory[historyIndex]) {
+                input.value = commandHistory[historyIndex];
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                input.value = commandHistory[historyIndex];
+            } else {
+                historyIndex = -1;
+                input.value = currentInput;
+            }
+        } else if (e.key === 'Tab') {
+            e.preventDefault();
+            autoCompleteCommand();
         }
     });
+    
+    // Auto-complete functionality
+    function autoCompleteCommand() {
+        const currentValue = input.value.toLowerCase();
+        const availableCommands = Object.keys(commands);
+        const matches = availableCommands.filter(cmd => cmd.startsWith(currentValue));
+        
+        if (matches.length === 1) {
+            input.value = matches[0];
+        } else if (matches.length > 1) {
+            // Show possible completions
+            const outputElement = document.createElement('div');
+            outputElement.innerHTML = `<span class="command-description">Possible completions: ${matches.join(', ')}</span>`;
+            output.appendChild(outputElement);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    }
 
 
     terminal.addEventListener('click', (e) => {
@@ -866,3 +1377,37 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
 
     initTerminal();
 });
+
+// Enhanced flag system - Define flags globally 
+window.flags = {
+    "flag{w3lc0me_t0_my_t3rm1n4l}": {
+        difficulty: "Easy",
+        location: "HTML source code",
+        points: 100,
+        hint: "Sometimes the best hiding spots are in plain sight"
+    },
+    "flag{oscp_certified_hacker}": {
+        difficulty: "Medium", 
+        location: "Social media investigation",
+        points: 200,
+        hint: "Professional networks often contain valuable intelligence"
+    },
+    "flag{sudo_make_me_a_sandwich}": {
+        difficulty: "Easy",
+        location: "Command exploration",
+        points: 150,
+        hint: "Administrative privileges unlock hidden capabilities"
+    },
+    "flag{1337_h4x0r_sk1llz}": {
+        difficulty: "Hard",
+        location: "JavaScript analysis",
+        points: 300,
+        hint: "The source code holds more secrets than meets the eye"
+    },
+    "flag{pwn3d_th3_t3rm1n4l}": {
+        difficulty: "Expert",
+        location: "CSS manipulation",
+        points: 500,
+        hint: "Style sheets can hide more than just visual formatting"
+    }
+};
