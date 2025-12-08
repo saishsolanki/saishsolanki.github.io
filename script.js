@@ -141,7 +141,7 @@ Hello! I'm Saish, a cybersecurity enthusiast with a passion for offensive securi
 <div class="skill-bar"><div class="skill-fill" style="width: 75%">Advanced</div></div>
 
 <span class="command-category">🛠️ TOOLS & FRAMEWORKS</span>
-- Burp Suite Professional, Metasploit, Nmap, Wireshark, Metasploit, Nikto, SQLmap
+- Burp Suite Professional, Metasploit, Nmap, Wireshark, Nikto, SQLmap
 - OWASP Testing Framework, BloodHound, Sliver C2, Impacket
 - Git, Jenkins, PowerShell, Windows/Linux environments, 
 
@@ -173,7 +173,7 @@ Type '<span class="success">certifications</span>' for detailed certification ti
    🎯 <span class="success">Challenge:</span> Bypass without credential knowledge
    ✅ <span class="success">Solution:</span> Parameter tampering & session fixation
 
-<span class="success">4. Comprehensive Security Assessment Framework</span>
+<span class="success">3. Comprehensive Security Assessment Framework</span>
    🔗 <a href="https://github.com/saishsolanki/capstone-project" target="_blank">Capstone Project</a>
    📝 <span class="success">Technical Details:</span>
       • Automated vulnerability scanning integration
@@ -329,45 +329,7 @@ Type '<span class="success">blog</span>' to read about my OSCP journey in detail
 All repositories maintain high standards with proper documentation,
 security best practices, and educational value for the community.
 `,
-        blog: `
-<span class="command-category">📝 TECHNICAL BLOG & WRITEUPS</span>
 
-<span class="success">🎯 OSCP Journey Series</span>
-   📖 <span class="success">"My OSCP Journey: From Zero to Certified"</span>
-      • 6-month preparation strategy and timeline
-      • Lab experience and machine walkthroughs
-      • Exam day experience and lessons learned
-      • Resources that made the difference
-
-<span class="success">🔬 Security Research Articles</span>
-   📄 <span class="success">"Advanced SQL Injection Techniques"</span>
-      • Beyond basic injection: time-based and blind techniques
-      • Automated testing script development
-      • Real-world case studies and remediation
-
-   📄 <span class="success">"Authentication Bypass Patterns"</span>
-      • Common logic flaws in authentication systems
-      • Testing methodologies and tool development
-      • Defense strategies for developers
-
-<span class="success">🏗️ Technical Tutorials</span>
-   🛠️ <span class="success">"Building Security Assessment Frameworks"</span>
-      • Architecture design for scalable testing
-      • Integration of automated and manual testing
-      • Reporting and risk prioritization strategies
-
-<span class="success">💡 Industry Insights</span>
-   📊 <span class="success">"The Evolution of Cybersecurity Threats"</span>
-      • Analysis of emerging attack vectors
-      • Impact on enterprise security strategies
-      • Recommendations for security professionals
-
-<span class="command-category">📬 PUBLICATION SCHEDULE</span>
-New content published regularly focusing on practical cybersecurity
-skills, real-world applications, and lessons from the field.
-
-<span class="success">💬 Featured on LinkedIn:</span> <a href="https://linkedin.com/in/saishsolanki" target="_blank">Professional insights and career journey</a>
-`,
         testimonials: `
 <span class="command-category">💬 PROFESSIONAL RECOMMENDATIONS</span>
 
@@ -936,14 +898,7 @@ Include:
 `).join('');
             
             const totalPoints = discoveredFlags.reduce((total, f) => {
-                const points = {
-                    'flag{w3lc0me_t0_my_t3rm1n4l}': 100,
-                    'flag{oscp_certified_hacker}': 200,
-                    'flag{sudo_make_me_a_sandwich}': 150,
-                    'flag{1337_h4x0r_sk1llz}': 300,
-                    'flag{pwn3d_th3_t3rm1n4l}': 500
-                };
-                return total + (points[f] || 0);
+                return total + (FLAG_POINTS[f] || 0);
             }, 0);
             
             return `
@@ -964,7 +919,6 @@ ${flagsList}
         },
         resetflags: () => {
             localStorage.removeItem('discoveredFlags');
-            discoveredFlags = [];
             return '<span class="success">🔄 Flag progress reset! All flags are now undiscovered.</span>';
         },
         hints: `
@@ -999,15 +953,16 @@ Leave no stone unturned in your reconnaissance.</span>
     };
 
     // After the commands object is defined, set the 'all' command dynamically:
-    commands.all = `
-<span class="command-category">📝 ALL COMMAND OUTPUTS</span>
-${Object.keys(commands).filter(cmd => cmd !== 'all').map(cmd => `
-<div style="margin-bottom:2em;">
-  <span class="success">Command: <b>${cmd}</b></span>
-  <div class="command-output">${commands[cmd]}</div>
-</div>
-`).join('')}
-`;
+    commands.all = () => {
+        return `<span class="command-category">📝 ALL COMMAND OUTPUTS</span>
+${Object.keys(commands).filter(cmd => cmd !== 'all').map(cmd => {
+    const output = typeof commands[cmd] === 'function' ? commands[cmd]() : commands[cmd];
+    return `<div style="margin-bottom:2em;">
+        <span class="success">Command: <b>${cmd}</b></span>
+        <div class="command-output">${output}</div>
+    </div>`;
+}).join('')}`;
+    };
 
     // Interactive Lab Functions
     window.analyzePassword = function() {
@@ -1207,14 +1162,7 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
 
 <span class="success">Progress: ${discoveredFlags.length}/5 flags discovered</span>
 <span class="success">Total Points: ${discoveredFlags.reduce((total, f) => {
-    const points = {
-        'flag{w3lc0me_t0_my_t3rm1n4l}': 100,
-        'flag{oscp_certified_hacker}': 200,
-        'flag{sudo_make_me_a_sandwich}': 150,
-        'flag{1337_h4x0r_sk1llz}': 300,
-        'flag{pwn3d_th3_t3rm1n4l}': 500
-    };
-    return total + (points[f] || 0);
+    return total + (FLAG_POINTS[f] || 0);
 }, 0)}</span>
 
 <span class="command-description">Excellent! You discovered that administrative privileges reveal hidden secrets!</span>
@@ -1236,7 +1184,7 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         } else if (cmd === 'flags') {
             outputElement.innerHTML = commands.flags();
         } else if (matchedCmd && commands[matchedCmd]) {
-            outputElement.innerHTML = commands[matchedCmd];
+            outputElement.innerHTML = typeof commands[matchedCmd] === 'function' ? commands[matchedCmd]() : commands[matchedCmd];
             // Fix resume download button after rendering resume command
             if (matchedCmd === 'resume') {
                 setTimeout(() => {
@@ -1323,62 +1271,31 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
         }
     });
 
-    // Add Enter key support for lab input fields
-    function addLabInputEnterHandlers() {
-        const passwordInput = document.getElementById('passwordInput');
-        if (passwordInput) {
-            passwordInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    window.analyzePassword();
-                }
-            });
+    // Use event delegation for dynamically created lab inputs
+    document.getElementById('output').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const targetId = e.target.id;
+            if (targetId === 'passwordInput') { e.preventDefault(); window.analyzePassword(); }
+            else if (targetId === 'encryptInput') { e.preventDefault(); window.encryptText(); }
+            else if (targetId === 'portInput') { e.preventDefault(); window.simulatePortScan(); }
+            else if (targetId === 'base64Input') { e.preventDefault(); window.checkBase64(); }
+            else if (targetId === 'osintFlagInput') { e.preventDefault(); window.checkOsintFlag(); }
         }
-        const encryptInput = document.getElementById('encryptInput');
-        if (encryptInput) {
-            encryptInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    window.encryptText();
-                }
-            });
-        }
-        const portInput = document.getElementById('portInput');
-        if (portInput) {
-            portInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    window.simulatePortScan();
-                }
-            });
-        }
-        const base64Input = document.getElementById('base64Input');
-        if (base64Input) {
-            base64Input.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    window.checkBase64();
-                }
-            });
-        }
-        const osintFlagInput = document.getElementById('osintFlagInput');
-        if (osintFlagInput) {
-            osintFlagInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    window.checkOsintFlag();
-                }
-            });
-        }
-    }
-
-    // Call after DOM and terminal are initialized
-    setTimeout(addLabInputEnterHandlers, 100);
+    });
 
     initTerminal();
 });
 
 // Enhanced flag system - Define flags globally 
+// Define flag points once for reuse
+const FLAG_POINTS = {
+    'flag{w3lc0me_t0_my_t3rm1n4l}': 100,
+    'flag{oscp_certified_hacker}': 200,
+    'flag{sudo_make_me_a_sandwich}': 150,
+    'flag{1337_h4x0r_sk1llz}': 300,
+    'flag{pwn3d_th3_t3rm1n4l}': 500
+};
+
 window.flags = {
     "flag{w3lc0me_t0_my_t3rm1n4l}": {
         difficulty: "Easy",
