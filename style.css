@@ -84,7 +84,7 @@ body.light-theme {
     overflow-y: auto;
     position: relative;
     box-shadow: 0 0 20px var(--border), inset 0 0 50px rgba(0, 255, 136, 0.1);
-    animation: flicker 0.15s infinite, crt-glow 2s ease-in-out infinite alternate;
+    animation: flicker 0.5s infinite, crt-glow 2s ease-in-out infinite alternate;
     border-radius: 8px;
     background: linear-gradient(135deg, var(--background) 0%, var(--bg-secondary) 100%);
     /* Terminal window styling */
