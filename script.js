@@ -111,45 +111,79 @@ document.addEventListener('DOMContentLoaded', () => {
 • Some commands have hidden easter eggs - experiment!
 `,
         about: `
-Hello! I'm Saish, a cybersecurity enthusiast with a passion for offensive security. My expertise lies in identifying and exploiting vulnerabilities to help organizations improve their security posture. I'm driven by a curiosity to understand how systems work and how they can be broken. This terminal is a small example of that passion.
+<span class="command-category">👋 ABOUT ME</span>
+
+Hello there! I'm <span class="success">Saish Solanki</span>, an OSCP-Certified Cybersecurity Analyst and IT Applications Support Specialist based in <span class="success">Toronto, Canada</span>.
+
+Taking cybersecurity as a profession has been my affection from the start. I have always envisioned what humans can and have achieved using a computer, but I always tend to think about their security needs and ways of breaking it to develop and make our current cyberspace safer.
+
+<span class="command-category">🎯 CURRENT FOCUS</span>
+• IT Applications Support at <span class="success">HUGO BOSS</span>
+• ERP Systems (SAP AFS/Retail) & EDI Integration
+• Offensive Security & Vulnerability Assessment
+• Device Management (Intune, JAMF, Active Directory)
+
+<span class="command-category">🌍 LANGUAGES</span>
+• English (Professional Working)
+• Hindi (Native or Bilingual)
+• Gujarati (Native or Bilingual)
+
+I believe that people should do the things that they love and enjoy. I would love to make up billions of success stories and gain more knowledge every day.
 `,
         skills: `
 <span class="command-category">🔧 TECHNICAL COMPETENCIES</span>
 
+<span class="success">ERP & SAP Systems</span>
+<div class="skill-bar"><div class="skill-fill" style="width: 90%">Expert</div></div>
+
+<span class="success">EDI Integration (X12/EDIFACT)</span>
+<div class="skill-bar"><div class="skill-fill" style="width: 88%">Expert</div></div>
+
 <span class="success">Penetration Testing</span>
 <div class="skill-bar"><div class="skill-fill" style="width: 90%">Expert</div></div>
 
-<span class="success">Web Application Security</span>
-<div class="skill-bar"><div class="skill-fill" style="width: 95%">Expert</div></div>
+<span class="success">Device Management (Intune/JAMF)</span>
+<div class="skill-bar"><div class="skill-fill" style="width: 92%">Expert</div></div>
 
-<span class="success">Network Security</span>
-<div class="skill-bar"><div class="skill-fill" style="width: 85%">Advanced</div></div>
+<span class="success">Active Directory & Azure</span>
+<div class="skill-bar"><div class="skill-fill" style="width: 88%">Expert</div></div>
 
-<span class="success">Exploit Development</span>
-<div class="skill-bar"><div class="skill-fill" style="width: 80%">Advanced</div></div>
-
-<span class="success">Active Directory Security</span>
+<span class="success">Network Security (TCP/IP, VPN, VoIP)</span>
 <div class="skill-bar"><div class="skill-fill" style="width: 85%">Advanced</div></div>
 
 <span class="success">Linux Administration</span>
 <div class="skill-bar"><div class="skill-fill" style="width: 90%">Expert</div></div>
 
-<span class="success">Scripting (Python/Bash)</span>
+<span class="success">Scripting (Python/Bash/PowerShell)</span>
 <div class="skill-bar"><div class="skill-fill" style="width: 88%">Expert</div></div>
 
-<span class="success">Mobile Device Management</span>
-<div class="skill-bar"><div class="skill-fill" style="width: 75%">Advanced</div></div>
+<span class="command-category">🖥️ OPERATING SYSTEMS</span>
+• Linux (Parrot, Kali, Ubuntu) • Windows Server (2008-2025)
+• Android/iOS • macOS
 
-<span class="command-category">🛠️ TOOLS & FRAMEWORKS</span>
-- Burp Suite Professional, Metasploit, Nmap, Wireshark, Nikto, SQLmap
-- OWASP Testing Framework, BloodHound, Sliver C2, Impacket
-- Git, Jenkins, PowerShell, Windows/Linux environments, 
+<span class="command-category">🏢 ERP & BUSINESS APPLICATIONS</span>
+• SAP AFS/Retail (T-Codes: VF02, VF31, VA03, WE02/09)
+• SAP CAR, BMC Remedy, Jira Service Management, ServiceNow
+
+<span class="command-category">🔗 EDI & INTEGRATION</span>
+• SPS Commerce, OpenText (VAN), GXS Catalog, Rithum DSCO
+• ANSI X12 (850, 855, 856, 810), EDIFACT
+
+<span class="command-category">🌐 NETWORKING</span>
+• TCP/IP, DNS, DHCP, SSH, VPN, RDP, VLAN, SNMP, VoIP
+
+<span class="command-category">🛠️ SOFTWARE & TOOLS</span>
+• Intune, Azure, JAMF Pro, Apple Business Manager
+• Burp Suite, Metasploit, Nmap, Wireshark, BloodHound
+• PowerShell, Windows Admin Center, BMC Remedy
+
+<span class="command-category">💻 PROGRAMMING & SCRIPTING</span>
+• Python, Bash, PowerShell, SQL, C/C++, HTML/CSS
 
 <span class="command-category">📜 CERTIFICATIONS</span>
-- <span class="success">OSCP+</span> - Offensive Security Certified Professional
-- <span class="status-warning">In Progress: OSEP</span> Offensive Security Experienced Professional
+- <span class="success">OSCP & OSCP+</span> - OffSec Certified Professional (May 2025)
 
-Type '<span class="success">certifications</span>' for detailed certification timeline.
+Type '<span class="success">certifications</span>' for detailed certification information.
 `,
         projects: `
 <span class="command-category">🚀 INTERACTIVE PROJECT SHOWCASE</span>
@@ -192,10 +226,10 @@ Type '<span class="success">lab</span>' for interactive security demonstrations.
         certifications: `
 <span class="command-category">🎓 MY CYBERSECURITY CERTIFICATION JOURNEY</span>
 
-<span class="success">═══════════════════════════════════════════════</span>
-<span class="success">OSCP - Offensive Security Certified Professional</span>
-<span class="success">═══════════════════════════════════════════════</span>
-<span class="status-online">✓ ACHIEVED</span> | Completion: 2024
+<span class="success">═══════════════════════════════════════════════════════════</span>
+<span class="success">OSCP & OSCP+ - OffSec Certified Professional</span>
+<span class="success">═══════════════════════════════════════════════════════════</span>
+<span class="status-online">✓ ACHIEVED</span> | Completion: May 2025
 📍 <span class="success">Key Skills Acquired:</span>
    • Advanced penetration testing methodologies
    • Buffer overflow exploitation techniques  
@@ -210,11 +244,29 @@ Type '<span class="success">lab</span>' for interactive security demonstrations.
    • Developed Anger management due to the Relia machine :)
    • Enhanced report writing for technical stakeholders
 
-<span class="command-category">🔄 CONTINUOUS LEARNING PATH</span>
+<span class="command-category">📚 ADDITIONAL CERTIFICATIONS & TRAINING</span>
 
-<span class="success">📚 Planned Certifications (2024-2025):</span>
-   • OSEP - Offensive Security Experienced Professional
-   • CISSP - Information Systems Security Professional
+<span class="success">Cybersecurity Training:</span>
+   • Ethical Hacking: SQL Injection
+   • Introduction to Kali Linux and Windows Subsystem for Linux
+   • Introduction to Linux
+   • Introduction to IT Architecture
+   • Play It Safe: Manage Security Risks
+
+<span class="command-category">🎓 EDUCATION</span>
+
+<span class="success">Post-Graduate Certificate in Offensive Cyber Security</span>
+   📍 York University School of Continuing Studies, Toronto
+   📅 May 2024 - January 2025
+
+<span class="success">Information Systems Security Graduate Certificate</span>
+   📍 Georgian College, Barrie, ON
+   📅 May 2023 - April 2024
+   🏆 Dean's List - Average: 83.66%
+
+<span class="success">Bachelor of Engineering in Information Technology</span>
+   📍 Goa College of Engineering, India
+   📅 July 2018 - July 2022
 
 <span class="command-category">📈 SKILLS PROGRESSION</span>
 Each certification represents months of dedicated study, hands-on practice, 
@@ -367,8 +419,13 @@ contributing to knowledge sharing and collaborative problem-solving.
         contact: `
 <span class="command-category">📞 GET IN TOUCH</span>
 
+<span class="success">� Location:</span> North York, Toronto, ON, Canada
+
+<span class="success">📱 Phone:</span> <a href="tel:+13658832256">+1 (365) 883-2256</a>
+   <span class="command-description">Mobile - Available during business hours (EST)</span>
+
 <span class="success">📧 Email:</span> <a href="mailto:saish.b.solanki@gmail.com">saish.b.solanki@gmail.com</a>
-    <span class="command-description">Secure communication preferred - PGP key available on request</span>
+   <span class="command-description">Secure communication preferred - PGP key available on request</span>
 
 <span class="success">💼 LinkedIn:</span> <a href="https://linkedin.com/in/saishsolanki" target="_blank">linkedin.com/in/saishsolanki</a>
    <span class="command-description">Professional networking and career updates</span>
@@ -376,17 +433,20 @@ contributing to knowledge sharing and collaborative problem-solving.
 <span class="success">💻 GitHub:</span> <a href="https://github.com/saishsolanki" target="_blank">github.com/saishsolanki</a>
    <span class="command-description">Open source contributions and security projects</span>
 
+<span class="success">🌐 Portfolio:</span> <a href="https://saishsolanki.github.io" target="_blank">saishsolanki.github.io</a>
+   <span class="command-description">Interactive terminal portfolio (you're here!)</span>
+
 <span class="command-category">⚡ RESPONSE TIMES</span>
 • <span class="success">Email:</span> Within 24 hours for professional inquiries
 • <span class="success">LinkedIn:</span> Same day for connection requests
-• <span class="success">Security Reports:</span> Priority handling within 12 hours
+• <span class="success">Phone:</span> Available during EST business hours
 
 <span class="command-category">🔒 SECURE COMMUNICATION</span>
 For sensitive security matters, encrypted communication options available.
 Contact me for secure channels and PGP key exchange.
 
-<span class="success">🌍 Location:</span> Available for remote work globally
-<span class="success">🕒 Timezone:</span> Flexible scheduling for international clients
+<span class="success">🌍 Availability:</span> Open to opportunities in Toronto/GTA area and remote
+<span class="success">🕒 Timezone:</span> Eastern Standard Time (EST)
 `,
         lab: `
 <span class="command-category">🔬 INTERACTIVE SECURITY LAB</span>
@@ -426,8 +486,9 @@ should only be performed on systems you own or have explicit permission to test.
         resume: `
 <span class="command-category">📄 INTERACTIVE RESUME</span>
 
-<span class="success">👤 SAISH SOLANKI - CYBERSECURITY ANALYST</span>
-<span class="status-online">OSCP Certified</span> | <span class="success">Offensive Security Specialist</span>
+<span class="success">👤 SAISH SOLANKI</span>
+<span class="status-online">OSCP & OSCP+ Certified</span> | <span class="success">IT Applications Support Specialist</span>
+📍 Toronto, ON | 📱 +1-365-883-2256 | 📧 saish.b.solanki@gmail.com
 
 <button onclick="toggleSection('experience')" style="background: var(--border); color: var(--background); border: none; padding: 4px 8px; cursor: pointer; font-family: inherit; margin: 2px;">💼 Experience</button>
 <button onclick="toggleSection('education')" style="background: var(--border); color: var(--background); border: none; padding: 4px 8px; cursor: pointer; font-family: inherit; margin: 2px;">🎓 Education</button>
@@ -437,51 +498,70 @@ should only be performed on systems you own or have explicit permission to test.
 <div id="experience" style="display: none;">
 <span class="command-category">💼 PROFESSIONAL EXPERIENCE</span>
 
-<span class="success">Cybersecurity Analyst & IT Infrastructure Specialist</span>
-<span class="command-description">Current Role</span>
-• Conducting comprehensive vulnerability assessments and penetration testing
-• Managing enterprise IT infrastructure and mobile device management
-• Developing custom security tools and automation scripts
-• Collaborating with cross-functional teams to enhance security posture
+<span class="success">IT Applications Support Specialist</span>
+<span class="command-description">HUGO BOSS | Dec 2025 - Present | Toronto, ON</span>
+• Orchestrate end-to-end lifecycle of EDI transactions (850 PO, 855 Ack, 856 ASN, 810 Invoice)
+• Provide Tier 2/3 support for SAP AFS and Retail modules using T-Codes (VF02, VF31)
+• Analyze and resolve complex processing errors to prevent retailer chargebacks
+• Facilitate technical onboarding of wholesale customers, configuring VAN setups
+• Author comprehensive technical documentation for EDI Monitoring processes
+• Monitor inbound/outbound IDocs (WE02, BD87) and VAN logs proactively
 
-<span class="success">Security Research & Tool Development</span>
-<span class="command-description">Personal Projects</span>
-• Created automated SQL injection testing frameworks
-• Developed authentication bypass exploitation tools
-• Contributed to open-source cybersecurity projects
-• Published technical research and educational content
+<span class="success">IT Support Specialist</span>
+<span class="command-description">HUGO BOSS | Nov 2024 - Nov 2025 | Toronto, ON</span>
+• Resolved 1,200+ technical issues through L1/L2 support, cutting downtime by 40%
+• Played pivotal role in rollout of 13+ new stores with 100% IT operational readiness
+• Improved network stability by 99% through diagnosing 20+ network issues
+• Configure and administer Microsoft Intune, Active Directory, MDM for 80+ devices
+• Streamlined enrollment workflows, trimming provisioning time by 20%
+• Collaborate with US and Germany IT teams, reducing cross-border resolution time by 25%
+
+<span class="success">Technical Support, IT Intern</span>
+<span class="command-description">HUGO BOSS | Jun 2024 - Oct 2024 | Toronto, ON</span>
+• Provided Tier 1-3 on-site IT support maintaining 99% uptime for critical systems
+• Led deployment of 50+ network devices in 5 new store locations
+• Managed VOIP phones including call trees and routing configurations
+• Implemented secure data destruction procedures for end-of-life devices
+
+<span class="success">IT Security Coordinator / Volunteer</span>
+<span class="command-description">Bridget's Bunnies | Jan 2024 - Jun 2024 | Barrie, ON</span>
+• Implemented security updates, reducing potential vulnerabilities by 30%
+• Managed volunteer data security ensuring 100% privacy regulation adherence
+• Conducted thorough review of privacy protocols, enhancing data protection by 20%
 </div>
 
 <div id="education" style="display: none;">
-<span class="command-category">🎓 EDUCATION & TRAINING</span>
+<span class="command-category">🎓 EDUCATION</span>
 
-<span class="success">Cybersecurity Specialization</span>
-• Offensive Security Certified Professional (OSCP) - 2024
-• Advanced penetration testing methodologies
-• Exploit development and vulnerability research
-• Real-world red team simulation experience
+<span class="success">Post-Graduate Certificate in Offensive Cyber Security</span>
+📍 York University School of Continuing Studies, Toronto
+📅 May 2024 - January 2025
 
-<span class="success">Continuous Learning</span>
-• HackTheBox Pro Labs and Machines
-• TryHackMe Advanced Paths
-• Industry conferences and workshops
-• Open-source tool development and research
+<span class="success">Information Systems Security Graduate Certificate</span>
+📍 Georgian College, Barrie, ON
+📅 May 2023 - April 2024
+🏆 Dean's List - Average: 83.66%
+
+<span class="success">Bachelor of Engineering in Information Technology</span>
+📍 Goa College of Engineering, India
+📅 July 2018 - July 2022
 </div>
 
 <div id="certifications-resume" style="display: none;">
-<span class="command-category">📜 CERTIFICATIONS & ACHIEVEMENTS</span>
+<span class="command-category">📜 CERTIFICATIONS & TECHNICAL SKILLS</span>
 
-<span class="success">✓ OSCP - Offensive Security Certified Professional (2024)</span>
+<span class="success">✓ OSCP & OSCP+ - OffSec Certified Professional (May 2025)</span>
 • 24-hour hands-on practical examination
-• Real-world penetration testing scenarios
-• Buffer overflow exploitation mastery
-• Active Directory enumeration and privilege escalation
+• Buffer overflow exploitation & Active Directory attacks
+• Manual penetration testing without automated tools
 
-<span class="success">🎯 CTF Achievements</span>
-• HackTheBox Pro Hacker ranking
-• TryHackMe top 5% global ranking
-• Multiple CTF competition participations
-• Specialized in web exploitation and binary analysis
+<span class="success">Technical Skills:</span>
+• <span class="success">OS:</span> Linux (Parrot, Kali, Ubuntu), Windows Server (2008-2025), macOS
+• <span class="success">ERP:</span> SAP AFS/Retail, SAP CAR, BMC Remedy, Jira, ServiceNow
+• <span class="success">EDI:</span> SPS Commerce, OpenText, GXS Catalog, ANSI X12, EDIFACT
+• <span class="success">MDM:</span> Intune, Azure, JAMF Pro, Apple Business Manager
+• <span class="success">Networking:</span> TCP/IP, DNS, DHCP, SSH, VPN, RDP, VLAN, VoIP
+• <span class="success">Languages:</span> Python, Bash, PowerShell, SQL, C/C++, HTML/CSS
 </div>
 
 <span class="command-category">🔗 QUICK LINKS</span>
@@ -586,29 +666,36 @@ drwxr-xr-x  2 saish saish 4096 ${new Date().toDateString()} <span class="success
         `,
         'cat resume.txt': `
 <span class="command-category">📄 RESUME.TXT</span>
-<span class="success">=====================================</span>
-<span class="success">SAISH SOLANKI - CYBERSECURITY ANALYST</span>
-<span class="success">=====================================</span>
+<span class="success">=====================================================</span>
+<span class="success">SAISH SOLANKI - IT APPLICATIONS SUPPORT SPECIALIST</span>
+<span class="success">=====================================================</span>
 
+📍 Toronto, ON | 📱 +1-365-883-2256
 📧 saish.b.solanki@gmail.com
 🔗 linkedin.com/in/saishsolanki
 💻 github.com/saishsolanki
-🛡️ OSCP Certified Professional
+🛡️ OSCP & OSCP+ Certified Professional
 
-<span class="command-category">SUMMARY</span>
-Offensive security specialist with expertise in penetration testing,
-vulnerability assessment, and security tool development. OSCP certified
-with hands-on experience in real-world security operations.
+<span class="command-category">PROFESSIONAL SUMMARY</span>
+• Expertise in ERP systems, EDI transactions (X12/EDIFACT), SAP AFS/Retail
+• Proven knowledge of Enterprise Windows and Mac operating systems
+• Demonstrable expertise in providing tier 1/2/3 IT support with ITIL best practices
+• Skilled in device lifecycle management using Intune, Autopilot, JAMF Pro
 
 <span class="command-category">CORE COMPETENCIES</span>
-• Web Application Security Testing    • Network Penetration Testing
-• Active Directory Security          • Exploit Development
-• Python/Bash Scripting            • Linux/Windows Administration
-• Security Tool Development         • Vulnerability Research
+• ERP & SAP Systems (AFS/Retail)    • EDI Integration (X12/EDIFACT)
+• Active Directory & Azure          • MDM (Intune, JAMF Pro)
+• Penetration Testing              • Network Security & VoIP
+• Python/Bash/PowerShell           • Linux/Windows Administration
+
+<span class="command-category">CURRENT ROLE</span>
+IT Applications Support Specialist @ HUGO BOSS (Dec 2025 - Present)
+• EDI transaction lifecycle management (850, 855, 856, 810)
+• SAP AFS/Retail Tier 2/3 support
+• VAN integrations (SPS Commerce, OpenText)
 
 <span class="command-category">CERTIFICATIONS</span>
-✓ OSCP - Offensive Security Certified Professional (2024)
-⏳ OSEP - In Progress
+✓ OSCP & OSCP+ - OffSec Certified Professional (May 2025)
 
 Type 'resume' for interactive version or 'contact' for full details
         `,
@@ -665,8 +752,8 @@ Type 'contact' for secure communication options.
 
 <span class="success">🏆 ACHIEVED CERTIFICATIONS</span>
 
-<span class="status-online">✓ OSCP - Offensive Security Certified Professional</span>
-   📅 <span class="success">Earned:</span> 2024
+<span class="status-online">✓ OSCP & OSCP+ - OffSec Certified Professional</span>
+   📅 <span class="success">Earned:</span> May 2025
    🎯 <span class="success">Focus:</span> Hands-on penetration testing and exploit development
    💪 <span class="success">Skills Gained:</span>
       • Manual vulnerability assessment techniques
@@ -675,27 +762,34 @@ Type 'contact' for secure communication options.
       • Custom exploit development and payload crafting
       • Professional penetration testing report writing
 
-<span class="success">🔄 IN PROGRESS</span>
+<span class="success">📚 ADDITIONAL TRAINING</span>
+   • Ethical Hacking: SQL Injection
+   • Introduction to Kali Linux and Windows Subsystem for Linux
+   • Introduction to Linux
+   • Introduction to IT Architecture
+   • Play It Safe: Manage Security Risks
 
-<span class="status-warning">⏳ OSEP - Offensive Security Experienced Professional</span>
-   📚 <span class="success">Status:</span> Currently studying advanced techniques
-   🎯 <span class="success">Focus Areas:</span>
-      • Advanced evasion techniques
-      • Code review and exploit development
-      • Advanced persistence mechanisms
-      • Bypassing modern security controls
+<span class="command-category">🎓 EDUCATION</span>
 
-<span class="success">📈 PLANNED CERTIFICATIONS (2024-2025)</span>
-   • CISSP - Information Systems Security Professional
-   • GCIH - GIAC Certified Incident Handler
-   • GCPN - GIAC Certified Penetration Tester
+<span class="success">Post-Graduate Certificate in Offensive Cyber Security</span>
+   📍 York University School of Continuing Studies, Toronto
+   📅 May 2024 - January 2025
+
+<span class="success">Information Systems Security Graduate Certificate</span>
+   📍 Georgian College, Barrie, ON
+   📅 May 2023 - April 2024
+   🏆 Dean's List - Average: 83.66%
+
+<span class="success">Bachelor of Engineering in Information Technology</span>
+   📍 Goa College of Engineering, India
+   📅 July 2018 - July 2022
 
 <span class="command-category">🎖️ PROFESSIONAL DEVELOPMENT</span>
 <span class="success">Continuous Learning Metrics:</span>
 • 300+ hours of hands-on lab practice annually
 • Regular participation in security conferences and workshops  
 • Active contribution to cybersecurity community knowledge base
-• Mentoring aspiring security professionals
+• Academic tutoring in Network Security and Cryptography
 
 <span class="command-description">Each certification represents months of dedicated study and
 real-world application. The OSCP journey alone involved 400+ hours
@@ -1290,7 +1384,7 @@ Congratulations! You've found the flag. This demonstrates the kind of curiosity 
 // Define flag points once for reuse
 const FLAG_POINTS = {
     'flag{w3lc0me_t0_my_t3rm1n4l}': 100,
-    'flag{oscp_certified_hacker}': 200,
+    'flag{osint_linkedin}': 200,
     'flag{sudo_make_me_a_sandwich}': 150,
     'flag{1337_h4x0r_sk1llz}': 300,
     'flag{pwn3d_th3_t3rm1n4l}': 500
@@ -1303,7 +1397,7 @@ window.flags = {
         points: 100,
         hint: "Sometimes the best hiding spots are in plain sight"
     },
-    "flag{oscp_certified_hacker}": {
+    "flag{osint_linkedin}": {
         difficulty: "Medium", 
         location: "Social media investigation",
         points: 200,
